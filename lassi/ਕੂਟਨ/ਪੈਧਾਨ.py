@@ -50,11 +50,33 @@ def ਦਸ੍ਤ_ਸੱਮਗਰੀ_ਪਾਣਾ(ਦਸ੍ਤ, ਰਾਸ੍ਤ�
     ਸੱਮਗਰੀ = {}
 
     re_ident = r'[\p{M}\p{L}_]+[\p{M}\p{L}\p{N}_]*'
-    re_args = r'{}'
-    re_func_comp = r'def[\s]+{}({}):'.format(re_ident, re_args)
+    re_int = r''
+    re_flt = r''
+    re_dict = r''
+    re_liste = r''
+    re_appel_fonc = r''
+
+    re_val = r'(%s)|[\p{N}]+(\.?[\p{N}])?' % re_ident
+    re_arg_val = r'({})[\s]*=[\s]*({})'.format(re_ident, re_val)
+    re_args = r'[\s]*({av}([\s]*,[\s]*{av})*)|({id}([\s]*,[\s]*{id}(?![\s]*=))*)([\s]*,[\s]*{av})*'.format(av=re_arg_val, id=re_ident)
+    regex.match(re_args, 'ਰਾਸ੍ਤਾ=2')
+    regex.match(re_args, 'ਦਸ੍ਤ, ਰਾਸ੍ਤਾ=3')
+    regex.match(re_args, 'ਦਸ੍ਤ, ਰਾਸ੍ਤਾ')
+    re_func_comp = r'def[\s]*+(?P<ਨਾਮ>{})[\s]*\([\s]*(?P<args>{})[\s]*\)[\s]*:'.format(re_ident, re_args)
+    re_func_emp = r'def[\s]*+(?P<ਨਾਮ>{})\((?P<args>{})?'.format(re_ident, re_args)
+    re_func_cont = r'\t{}'
+    re_func_fin = r'\t{}*[\s]*\)[\s]*:'
     re_clase = r''
+
+    s = 'def ਦਸ੍ਤਾ_ਸੱਮਗਰੀ_ਪਾਣਾ2੧੨(ਦਸ੍ਤ, ਰਾਸ੍ਤਾ=2):'
+    s_emp = 'def ਦਸ੍ਤਾ_ਸੱਮਗਰੀ_ਪਾਣਾ2੧੨(ਦਸ੍ਤ,'
+    print(regex.fullmatch(re_func_comp, s).groupdict())
+    print(regex.fullmatch(re_func_emp, s_emp).groupdict())
+
     with open(os.path.join(ਰਾਸ੍ਤਾ, ਦਸ੍ਤ)) as ਦ:
         ਰੇ = ਦ.readline()
+
+        if
 
 
     return ਸੱਮਗਰੀ
