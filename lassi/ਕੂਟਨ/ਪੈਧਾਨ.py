@@ -27,8 +27,8 @@ class ਕੂਟਨ_ਪੈਧਾਨ(ਕੂਟਨ_ਘਟ):
                         'ਪ੍ਰਕਾਰ': 'ਨਤ੍ਥੀ', 'ਸੱਮਗਰੀ': {}
                     }
             for ਦ in ਦਸ੍ਤ:
-                if ਦ[0] != '_' and os.path.splitext(ਦ)[1] == '.py':
-                    ਸੱਮਗਰੀ = ਦਸ੍ਤ_ਸੱਮਗਰੀ_ਪਾਣਾ(ਦਸ੍ਤ, ਰਾ)
+                if ਦ[0] != '_' or ਦ == '__init__.py' and os.path.splitext(ਦ)[1] == '.py':
+                    ਸੱਮਗਰੀ = ਦਸ੍ਤ_ਸੱਮਗਰੀ_ਪਾਣਾ(ਦ, ਰਾ)
                     if len(ਸੱਮਗਰੀ):
                         ਕੋਸ਼[ਦ] = {
                             'ਪ੍ਰਕਾਰ': 'ਦਸ੍ਤ', 'ਸੱਮਗਰੀ': ਸੱਮਗਰੀ
@@ -50,33 +50,53 @@ def ਦਸ੍ਤ_ਸੱਮਗਰੀ_ਪਾਣਾ(ਦਸ੍ਤ, ਰਾਸ੍ਤ�
     ਸੱਮਗਰੀ = {}
 
     re_ident = r'[\p{M}\p{L}_]+[\p{M}\p{L}\p{N}_]*'
-    re_int = r''
-    re_flt = r''
-    re_dict = r''
+    re_val = r'(%s)|[\p{N}]+(\.?[\p{N}])?' % re_ident
+    re_dict = r'\{[\s]*{id}[\s]*:[\s]*{vl}([\s]*,[\s]*{id}[\s]*:[\s]*{vl})*[\s]*,?[\s]*\}'
+    re_ens = r'\{[\s]*{vl}([\s]*,[\s]*{vl})*[\s]*,?[\s]*\}'
     re_liste = r''
     re_appel_fonc = r''
 
-    re_val = r'(%s)|[\p{N}]+(\.?[\p{N}])?' % re_ident
+
     re_arg_val = r'({})[\s]*=[\s]*({})'.format(re_ident, re_val)
-    re_args = r'[\s]*({av}([\s]*,[\s]*{av})*)|({id}([\s]*,[\s]*{id}(?![\s]*=))*)([\s]*,[\s]*{av})*'.format(av=re_arg_val, id=re_ident)
-    regex.match(re_args, 'ਰਾਸ੍ਤਾ=2')
-    regex.match(re_args, 'ਦਸ੍ਤ, ਰਾਸ੍ਤਾ=3')
-    regex.match(re_args, 'ਦਸ੍ਤ, ਰਾਸ੍ਤਾ')
-    re_func_comp = r'def[\s]*+(?P<ਨਾਮ>{})[\s]*\([\s]*(?P<args>{})[\s]*\)[\s]*:'.format(re_ident, re_args)
-    re_func_emp = r'def[\s]*+(?P<ਨਾਮ>{})\((?P<args>{})?'.format(re_ident, re_args)
-    re_func_cont = r'\t{}'
-    re_func_fin = r'\t{}*[\s]*\)[\s]*:'
-    re_clase = r''
+    re_args = r'\([\s]*({av}([\s]*,[\s]*{av})*)|({id}([\s]*,[\s]*{id})*)([\s]*,[\s]*{av})*[\s]*\)'.format(av=re_arg_val, id=re_ident)
+    regex.match(re_args, '(ਰਾਸ੍ਤਾ=2):')
+    regex.match(re_args, '(ਦਸ੍ਤ, ਰਾਸ੍ਤਾ=3):')
+    regex.match(re_args, '(ਦਸ੍ਤ, ਰਾਸ੍ਤਾ):')
+    re_func_comp = r'def[\s]+(?P<ਨਾਮ>{})[\s]*\([\s]*(?P<args>{})[\s]*\)[\s]*:'.format(re_ident, re_args)
+    re_clase_comp = r'class[\s]+(?P<ਨਾਮ>{id})\([\s]*(?P<par>{id})[\s]*\)[\s]*:'.format(id=re_ident)
+
+    re_no_term = r'.*\\'
+    re_emp_decl = r'(def)|(class)[\s]+\('
+    re_fin_decl = r'.*\)[\s]*:'
 
     s = 'def ਦਸ੍ਤਾ_ਸੱਮਗਰੀ_ਪਾਣਾ2੧੨(ਦਸ੍ਤ, ਰਾਸ੍ਤਾ=2):'
     s_emp = 'def ਦਸ੍ਤਾ_ਸੱਮਗਰੀ_ਪਾਣਾ2੧੨(ਦਸ੍ਤ,'
-    print(regex.fullmatch(re_func_comp, s).groupdict())
-    print(regex.fullmatch(re_func_emp, s_emp).groupdict())
+    # print(regex.fullmatch(re_func_comp, s).groupdict())
+    # print(regex.fullmatch(re_func_emp, s_emp).groupdict())
 
-    with open(os.path.join(ਰਾਸ੍ਤਾ, ਦਸ੍ਤ)) as ਦ:
-        ਰੇ = ਦ.readline()
+    ਫ_ਦਸ੍ਤ = []
+    with open(os.path.join(ਰਾਸ੍ਤਾ, ਦਸ੍ਤ), encoding='UTF8') as ਦ:
+        ਰੇ = ਦ.readline().rstrip('\n ')
 
-        if
+        while ਰੇ is not None:
+            while regex.fullmatch(ਰੇ, re_no_term):
+                ਰੇ += ' ' + ਦ.readline().rstrip('\n \\').lstrip('\t ')
+
+            if regex.fullmatch(ਰੇ, re_emp_decl):
+                while not regex.fullmatch(ਰੇ, re_fin_decl):
+                    ਰੇ += ' ' + ਦ.readline().rstrip('\n \\').lstrip('\t ')
+
+            ਫ_ਦਸ੍ਤ.append(ਰੇ)
+
+            ਰੇ = ਦ.readline().rstrip('\n ')
+
+    m = regex.fullmatch(ਰੇ, re_func_comp)
+    if m:
+        ਕੋਸ਼ = m.groupdict()
+        ਸੱਮਗਰੀ[ਕੋਸ਼['ਨਾਮ']] = {
+            'ਪ੍ਰਕਾਰ': 'fonction',
+            'ਸੱਮਗਰੀ': {ਨ: {'ਪ੍ਰਕਾਰ': 'param', 'val': NotImplemented} for ਨ in ਕੋਸ਼['args']}
+        }
 
 
     return ਸੱਮਗਰੀ
