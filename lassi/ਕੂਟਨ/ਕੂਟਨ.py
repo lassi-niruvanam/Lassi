@@ -3,7 +3,7 @@ import os
 
 
 class ਕੂਟਨ_ਘਟ(object):
-    def __init__(ਖੁਦ, ਕੂਟਨ_ਨਾਮ, ਰਾਸ੍ਤਾ=None, ਅਨੁਵਾਦ_ਦਸ੍ਤਾਵੇਜ਼='ਅਨੁ'):
+    def __init__(ਖੁਦ, ਕੂਟਨ_ਨਾਮ, ਰਾਸ੍ਤਾ=None, ਅਨੁਵਾਦ_ਦਸ੍ਤਾਵੇਜ਼='ਅਨੁ', ign=None):
 
         if ਰਾਸ੍ਤਾ is None:
             for ਜ in ਜਗਹ.getsitepackages():
@@ -21,6 +21,7 @@ class ਕੂਟਨ_ਘਟ(object):
         ਖੁਦ.ਰਾਸ੍ਤਾ = ਰਾਸ੍ਤਾ
         ਖੁਦ.ਰਾਸ੍ਤਾ_ਪੂਰੀ = os.path.join(ਰਾਸ੍ਤਾ, ਕੂਟਨ_ਨਾਮ)
         ਖੁਦ.ਅਨੁਵਾਦ_ਦਸ੍ਤਾਵੇਜ਼ = ਅਨੁਵਾਦ_ਦਸ੍ਤਾਵੇਜ਼
+        ਖੁਦ.ignore = ign
 
         ਖੁਦ.ਕੋਸ਼ = {}
 
@@ -29,6 +30,8 @@ class ਕੂਟਨ_ਘਟ(object):
     def ਪਢਨਾ(ਖੁਦ):
         raise NotImplementedError
 
-    def ਲਿਖਣਾ(ਖੁਦ, ਰਾਸ੍ਤਾ):
-        raise NotImplementedError
+    def gen_dict_trads(ਖੁਦ):
+        pass
 
+    def ਅਨੁਵਾਦ_ਲਿਖਣਾ(ਖੁਦ, ਰਾਸ੍ਤਾ):
+        raise NotImplementedError

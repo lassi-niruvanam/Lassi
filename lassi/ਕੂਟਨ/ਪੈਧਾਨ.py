@@ -1,12 +1,13 @@
 import os
-import regex
+from warnings import warn as avertir
 
 from lassi.ਕੂਟਨ.ਕੂਟਨ import ਕੂਟਨ_ਘਟ
+import ast
 
 
 class ਕੂਟਨ_ਪੈਧਾਨ(ਕੂਟਨ_ਘਟ):
 
-    def ਲਿਖਣਾ(ਖੁਦ, ਰਾਸ੍ਤਾ):
+    def ਅਨੁਵਾਦ_ਲਿਖਣਾ(ਖੁਦ, ਰਾਸ੍ਤਾ):
         raise NotImplementedError
 
     def ਪਢਨਾ(ਖੁਦ):
@@ -17,7 +18,10 @@ class ਕੂਟਨ_ਪੈਧਾਨ(ਕੂਟਨ_ਘਟ):
         for ਰਾ, ਨਤ੍ਥੀ, ਦਸ੍ਤ in os.walk(ਖੁਦ.ਰਾਸ੍ਤਾ_ਪੂਰੀ):
 
             ਕੋਸ਼ = ਖੁਦ.ਕੋਸ਼['ਸੱਮਗਰੀ']
-            for ਰ in ਰਾਸ੍ਤਾ_ਟੂਠਨਾ(os.path.relpath(ਰਾ, ਖੁਦ.ਰਾਸ੍ਤਾ_ਪੂਰੀ)):
+            chemin_rel = os.path.relpath(ਰਾ, ਖੁਦ.ਰਾਸ੍ਤਾ_ਪੂਰੀ)
+            if any('.' in os.path.relpath(c, chemin_rel) for c in ਖੁਦ.ignore):
+                continue
+            for ਰ in ਰਾਸ੍ਤਾ_ਟੂਠਨਾ(chemin_rel):
                 if ਰ != '.' and ਰ != '' and ਰ[0] != '_':
                     ਕੋਸ਼ = ਕੋਸ਼[ਰ]['ਸੱਮਗਰੀ']
 
@@ -27,7 +31,7 @@ class ਕੂਟਨ_ਪੈਧਾਨ(ਕੂਟਨ_ਘਟ):
                         'ਪ੍ਰਕਾਰ': 'ਨਤ੍ਥੀ', 'ਸੱਮਗਰੀ': {}
                     }
             for ਦ in ਦਸ੍ਤ:
-                if ਦ[0] != '_' or ਦ == '__init__.py' and os.path.splitext(ਦ)[1] == '.py':
+                if (ਦ[0] != '_' or ਦ == '__init__.py') and os.path.splitext(ਦ)[1] == '.py':
                     ਸੱਮਗਰੀ = ਦਸ੍ਤ_ਸੱਮਗਰੀ_ਪਾਣਾ(ਦ, ਰਾ)
                     if len(ਸੱਮਗਰੀ):
                         ਕੋਸ਼[ਦ] = {
@@ -49,60 +53,102 @@ def ਰਾਸ੍ਤਾ_ਟੂਠਨਾ(ਰਾਸ੍ਤਾ, ਫ=None):
 def ਦਸ੍ਤ_ਸੱਮਗਰੀ_ਪਾਣਾ(ਦਸ੍ਤ, ਰਾਸ੍ਤਾ):
     ਸੱਮਗਰੀ = {}
 
-    re_ident = r'[\p{M}\p{L}_]+[\p{M}\p{L}\p{N}_]*'
-    re_val = r'(%s)|[\p{N}]+(\.?[\p{N}])?' % re_ident
-    re_dict = r'\{[\s]*{id}[\s]*:[\s]*{vl}([\s]*,[\s]*{id}[\s]*:[\s]*{vl})*[\s]*,?[\s]*\}'
-    re_ens = r'\{[\s]*{vl}([\s]*,[\s]*{vl})*[\s]*,?[\s]*\}'
-    re_liste = r''
-    re_appel_fonc = r''
-
-
-    re_arg_val = r'({})[\s]*=[\s]*({})'.format(re_ident, re_val)
-    re_args = r'\([\s]*({av}([\s]*,[\s]*{av})*)|({id}([\s]*,[\s]*{id})*)([\s]*,[\s]*{av})*[\s]*\)'.format(av=re_arg_val, id=re_ident)
-    regex.match(re_args, '(ਰਾਸ੍ਤਾ=2):')
-    regex.match(re_args, '(ਦਸ੍ਤ, ਰਾਸ੍ਤਾ=3):')
-    regex.match(re_args, '(ਦਸ੍ਤ, ਰਾਸ੍ਤਾ):')
-    re_func_comp = r'def[\s]+(?P<ਨਾਮ>{})[\s]*\([\s]*(?P<args>{})[\s]*\)[\s]*:'.format(re_ident, re_args)
-    re_clase_comp = r'class[\s]+(?P<ਨਾਮ>{id})\([\s]*(?P<par>{id})[\s]*\)[\s]*:'.format(id=re_ident)
-
-    re_no_term = r'.*\\'
-    re_emp_decl = r'(def)|(class)[\s]+\('
-    re_fin_decl = r'.*\)[\s]*:'
-
-    s = 'def ਦਸ੍ਤਾ_ਸੱਮਗਰੀ_ਪਾਣਾ2੧੨(ਦਸ੍ਤ, ਰਾਸ੍ਤਾ=2):'
-    s_emp = 'def ਦਸ੍ਤਾ_ਸੱਮਗਰੀ_ਪਾਣਾ2੧੨(ਦਸ੍ਤ,'
-    # print(regex.fullmatch(re_func_comp, s).groupdict())
-    # print(regex.fullmatch(re_func_emp, s_emp).groupdict())
-
-    ਫ_ਦਸ੍ਤ = []
     with open(os.path.join(ਰਾਸ੍ਤਾ, ਦਸ੍ਤ), encoding='UTF8') as ਦ:
-        ਰੇ = ਦ.readline().rstrip('\n ')
+        try:
+            obj_ast = ast.parse(ਦ.read())
+        except:
+            avertir(''.format(os.path.join(ਰਾਸ੍ਤਾ, ਦਸ੍ਤ)))
+            return ਸੱਮਗਰੀ
 
-        while ਰੇ is not None:
-            while regex.fullmatch(ਰੇ, re_no_term):
-                ਰੇ += ' ' + ਦ.readline().rstrip('\n \\').lstrip('\t ')
+    for o in obj_ast.body:
+        if isinstance(o, ast.Import):
+            name = o.names[0].name
+            asname = o.names[0].asname
+            ਸੱਮਗਰੀ[name if asname is None else asname] = {
+                'ਪ੍ਰਕਾਰ': 'import',
+                'ਸੱਮਗਰੀ': {},
+                'parent': name
 
-            if regex.fullmatch(ਰੇ, re_emp_decl):
-                while not regex.fullmatch(ਰੇ, re_fin_decl):
-                    ਰੇ += ' ' + ਦ.readline().rstrip('\n \\').lstrip('\t ')
+            }
+        elif isinstance(o, ast.ImportFrom):
+            mod = o.module
+            name = o.names[0].name
+            asname = o.names[0].asname
 
-            ਫ_ਦਸ੍ਤ.append(ਰੇ)
+            ਸੱਮਗਰੀ[name if asname is None else asname] = {
+                'ਪ੍ਰਕਾਰ': 'import',
+                'ਸੱਮਗਰੀ': {},
+                'parent': name,
+                'mod': mod
+            }
 
-            ਰੇ = ਦ.readline().rstrip('\n ')
+        elif isinstance(o, ast.ClassDef):
+            name = o.name
 
-    m = regex.fullmatch(ਰੇ, re_func_comp)
-    if m:
-        ਕੋਸ਼ = m.groupdict()
-        ਸੱਮਗਰੀ[ਕੋਸ਼['ਨਾਮ']] = {
-            'ਪ੍ਰਕਾਰ': 'fonction',
-            'ਸੱਮਗਰੀ': {ਨ: {'ਪ੍ਰਕਾਰ': 'param', 'val': NotImplemented} for ਨ in ਕੋਸ਼['args']}
-        }
+            ਸੱਮਗਰੀ[name] = {
+                'ਪ੍ਰਕਾਰ': 'classe',
+                'ਸੱਮਗਰੀ': {}
+            }
+            for s_o in o.body:
+                if isinstance(s_o, ast.FunctionDef):
+                    lire_fonc(s_o, ਸੱਮਗਰੀ[name]['ਸੱਮਗਰੀ'])
 
+        elif isinstance(o, ast.FunctionDef):
+            lire_fonc(o, ਸੱਮਗਰੀ)
+
+        elif isinstance(o, ast.Assign):
+            cibles = o.targets
+            for c in cibles:
+                ਸੱਮਗਰੀ[c.id] = {
+                    'ਪ੍ਰਕਾਰ': 'attr',
+                    'ਸੱਮਗਰੀ': {}
+                }
+        elif isinstance(o, ast.Expr):
+            pass
+        else:
+            avertir('{}'.format(type(o)))
 
     return ਸੱਮਗਰੀ
 
 
-ਨਮੁਨਹ = ਕੂਟਨ_ਪੈਧਾਨ(ਕੂਟਨ_ਨਾਮ='tinamit', ਰਾਸ੍ਤਾ='C:\\Users\\USERS1\PycharmProjects\Tinamit')
+def lire_fonc(o, d):
+    name = o.name
+    args = o.args.args
+    df = o.args.defaults
+    d[name] = {
+        'ਪ੍ਰਕਾਰ': 'fonction',
+        'ਸੱਮਗਰੀ': {a.arg: {'ਪ੍ਰਕਾਰ': 'param'} if i < (len(args) - len(df))
+            else {'ਪ੍ਰਕਾਰ': 'param', 'val': val(df[len(args) -1 - i])} for i, a in enumerate(args)}
+    }
+
+def val(o):
+    if isinstance(o, ast.Num):
+        return o.n
+    elif isinstance(o, ast.Name):
+        return o.id
+    elif isinstance(o, ast.Str):
+        return o.s
+    elif isinstance(o, ast.NameConstant):
+        return o.value
+    elif isinstance(o, ast.Attribute):
+        return
+    elif isinstance(o, ast.Dict):
+        raise NotImplementedError
+    elif isinstance(o, ast.List):
+        raise NotImplementedError
+    elif isinstance(o, ast.ListComp):
+        raise NotImplementedError
+    elif isinstance(o, ast.DictComp):
+        raise NotImplementedError
+    elif isinstance(o, ast.Set):
+        raise NotImplementedError
+    elif isinstance(o, ast.SetComp):
+        raise NotImplementedError
+    else:
+        raise TypeError(''.format(type(o)))
+
+ਨਮੁਨਹ = ਕੂਟਨ_ਪੈਧਾਨ(ਕੂਟਨ_ਨਾਮ='tinamit', ਰਾਸ੍ਤਾ='C:\\Users\\USERS1\PycharmProjects\Tinamit',
+                   ign=['Interfaz', 'Incertidumbre', 'Ejemplos'])
 import pprint
 
 pprint.pprint(ਨਮੁਨਹ.ਕੋਸ਼, indent=2)
