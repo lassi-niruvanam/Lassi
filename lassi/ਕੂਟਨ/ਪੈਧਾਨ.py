@@ -1,14 +1,15 @@
 import os
 from warnings import warn as avertir
 
+
 from lassi.ਕੂਟਨ.ਕੂਟਨ import ਕੂਟਨ_ਘਟ
 import ast
 
 
 class ਕੂਟਨ_ਪੈਧਾਨ(ਕੂਟਨ_ਘਟ):
 
-    def ਅਨੁਵਾਦ_ਲਿਖਣਾ(ਖੁਦ, ਰਾਸ੍ਤਾ):
-        raise NotImplementedError
+    def _ਅਨੁਵਾਦ_ਲਿਖਣਾ(ਖੁਦ, ਰਾਸ੍ਤਾ, ਜ਼ਬਾਨ):
+        ਕੂਟਨ_ਲਿਖਣਾ(dic=ਖੁਦ.ਕੋਸ਼, d_t=ਖੁਦ.ਕੋਸ਼_ਅਨੁ, ਰਾਸ੍ਤਾ=ਰਾਸ੍ਤਾ, ਜ਼ਬਾਨ=ਜ਼ਬਾਨ)
 
     def ਪਢਨਾ(ਖੁਦ):
         ਖੁਦ.ਕੋਸ਼.clear()
@@ -38,6 +39,56 @@ class ਕੂਟਨ_ਪੈਧਾਨ(ਕੂਟਨ_ਘਟ):
                             'ਪ੍ਰਕਾਰ': 'ਦਸ੍ਤ', 'ਸੱਮਗਰੀ': ਸੱਮਗਰੀ
                         }
 
+def ਕੂਟਨ_ਲਿਖਣਾ(dic, d_t, ਰਾਸ੍ਤਾ, ਜ਼ਬਾਨ, ch=None):
+
+    if ch is None:
+        ch = []
+
+    for ll, v in dic['ਸੱਮਗਰੀ'].items():
+        ਪ੍ਰਕਾਰ = v['ਪ੍ਰਕਾਰ']
+        n = v['code']
+        ਨਾਮ = d_t[n][ਜ਼ਬਾਨ] if ਜ਼ਬਾਨ in d_t[n] and len(d_t[n]) else ll
+        if ਪ੍ਰਕਾਰ == 'ਕੂਟਨ':
+            pass
+        elif ਪ੍ਰਕਾਰ == 'ਨਤ੍ਥੀ':
+            ch.append(ਨਾਮ)
+            ਕੂਟਨ_ਲਿਖਣਾ(dic=v, d_t=d_t, ਰਾਸ੍ਤਾ=ਰਾਸ੍ਤਾ, ਜ਼ਬਾਨ=ਜ਼ਬਾਨ, ch=ch)
+            ch.pop()
+        elif ਪ੍ਰਕਾਰ == 'ਦਸ੍ਤ':
+            ch.append(ਨਾਮ)
+            with open(os.path.join(ਰਾਸ੍ਤਾ, *ch), encoding='UTF8') as d:
+                d.writelines(écrire_doc(dic=v, d_t=d_t, ਜ਼ਬਾਨ=ਜ਼ਬਾਨ))
+            ch.pop()
+
+
+
+        else:
+            raise ValueError(''.format(ਪ੍ਰਕਾਰ))
+
+def écrire_doc(dic, d_t, ਜ਼ਬਾਨ, l_f=None, ctx=None):
+
+    if l_f is None:
+        l_f = []
+
+    for nom_orig, v in dic['ਸੱਮਗਰੀ'].items():
+        ਪ੍ਰਕਾਰ = v['ਪ੍ਰਕਾਰ']
+        n = v['code']
+        ਨਾਮ = d_t[n][ਜ਼ਬਾਨ] if ਜ਼ਬਾਨ in d_t[n] and len(d_t[n]) else nom_orig
+
+        if ਪ੍ਰਕਾਰ == 'classe':
+            l_f.append('class {ਨਾਮ}({nom_orig}):'.format(ਨਾਮ=ਨਾਮ, nom_orig=nom_orig))
+            écrire_doc(dic=v, d_t=d_t, ਜ਼ਬਾਨ=ਜ਼ਬਾਨ, l_f=l_f, ctx='classe')
+
+        elif ਪ੍ਰਕਾਰ == 'fonction':
+            t = '\t' * (1 if ctx == 'classe' else 0)
+            params = NotImplemented
+            l_f.append('{t}def {ਨਾਮ}({params}):'.format(t=t, ਨਾਮ=ਨਾਮ, params=params))
+
+            params_conv = NotImplemented
+            l_f.append('{t}{nom_orig}(params_conv)'.format(t=t+'\t', nom_orig=nom_orig, params_conv=params_conv))
+
+        elif ਪ੍ਰਕਾਰ == 'param':
+            pass  # Rien à faire
 
 def ਰਾਸ੍ਤਾ_ਟੂਠਨਾ(ਰਾਸ੍ਤਾ, ਫ=None):
     if ਫ is None:
@@ -152,3 +203,8 @@ def val(o):
 import pprint
 
 pprint.pprint(ਨਮੁਨਹ.ਕੋਸ਼, indent=2)
+
+ਨਮੁਨਹ.gén_dict_trads()
+
+ਨਮੁਨਹ.ajouter_langue('தமிழ்')
+ਨਮੁਨਹ.écire_dic_pour_trad()
