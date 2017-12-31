@@ -25,6 +25,10 @@ class ਕੂਟਨ_ਘਟ(object):
         ਖੁਦ.ਰਾਸ੍ਤਾ = ਰਾਸ੍ਤਾ
         ਖੁਦ.ਰਾਸ੍ਤਾ_ਪੂਰੀ = os.path.join(ਰਾਸ੍ਤਾ, ਕੂਟਨ_ਨਾਮ)
         ਖੁਦ.ਅਨੁਵਾਦ_ਦਸ੍ਤਾਵੇਜ਼ = ਅਨੁਵਾਦ_ਦਸ੍ਤਾਵੇਜ਼
+        if ign is None:
+            ign = []
+        if ਖੁਦ.ਅਨੁਵਾਦ_ਦਸ੍ਤਾਵੇਜ਼ not in ign:
+            ign.append(ਖੁਦ.ਅਨੁਵਾਦ_ਦਸ੍ਤਾਵੇਜ਼)
         ਖੁਦ.ignore = ign
 
         ਖੁਦ.ਖੁਦ_ਜ਼ਬਾਨ = ਖੁਦ_ਜ਼ਬਾਨ
@@ -46,15 +50,15 @@ class ਕੂਟਨ_ਘਟ(object):
     def ajouter_langue(ਖੁਦ, langue):
         for ll, v in ਖੁਦ.ਕੋਸ਼_ਅਨੁ.items():
             if langue not in v:
-                v[ll] = ''
+                v[langue] = ''
 
     def écire_dic_pour_trad(ਖੁਦ):
-        écrire_json(dic=ਖੁਦ.ਕੋਸ਼_ਅਨੁ, doc=os.path.join(ਖੁਦ.ਰਾਸ੍ਤਾ, ਖੁਦ.ਅਨੁਵਾਦ_ਦਸ੍ਤਾਵੇਜ਼, ਖੁਦ.ਅਨੁਵਾਦ_ਦਸ੍ਤਾਵੇਜ਼ + '.json'))
+        écrire_json(dic=ਖੁਦ.ਕੋਸ਼_ਅਨੁ, doc=os.path.join(ਖੁਦ.ਰਾਸ੍ਤਾ_ਪੂਰੀ, ਖੁਦ.ਅਨੁਵਾਦ_ਦਸ੍ਤਾਵੇਜ਼, ਖੁਦ.ਅਨੁਵਾਦ_ਦਸ੍ਤਾਵੇਜ਼ + '.json'))
 
     def ਅਨੁਵਾਦ_ਲਿਖਣਾ(ਖੁਦ, ਜ਼ਬਾਨ):
         code = ਜ਼ਬਾਨੋਂ[ਜ਼ਬਾਨ]['code']
 
-        ਰਾਸ੍ਤਾ = os.path.join(ਖੁਦ.ਰਾਸ੍ਤਾ, ਖੁਦ.ਅਨੁਵਾਦ_ਦਸ੍ਤਾਵੇਜ਼, code)
+        ਰਾਸ੍ਤਾ = os.path.join(ਖੁਦ.ਰਾਸ੍ਤਾ_ਪੂਰੀ, ਖੁਦ.ਅਨੁਵਾਦ_ਦਸ੍ਤਾਵੇਜ਼, code)
 
         ਖੁਦ._ਅਨੁਵਾਦ_ਲਿਖਣਾ(ਰਾਸ੍ਤਾ=ਰਾਸ੍ਤਾ, ਜ਼ਬਾਨ=ਜ਼ਬਾਨ)
 
@@ -65,17 +69,22 @@ def lin_dic(d, d_l, p=None):
     if p is None:
         p = []
 
-    for ll, v in d['ਸੱਮਗਰੀ'].items():
-        nouv = {'ਨਾਮ': ll, 'ਪ੍ਰਕਾਰ': d['ਪ੍ਰਕਾਰ'], 'ਜਗਾਹ': p}
-        n = gén_nombre(n_c=8, interdits=d_l.keys())
-        d_l[n] = nouv
-        v['num'] = n
+    if 'ਸੱਮਗਰੀ' in d:
+        for ll, v in d['ਸੱਮਗਰੀ'].items():
+            ਪ੍ਰਕਾਰ = v['ਪ੍ਰਕਾਰ']
+            if ਪ੍ਰਕਾਰ == 'import':
+                continue
 
-        p.append(ll)
+            nouv = {'ਨਾਮ': ll, 'ਪ੍ਰਕਾਰ': v['ਪ੍ਰਕਾਰ'], 'ਜਗਾਹ': p.copy()}
+            n = gén_nombre(n_c=8, interdits=d_l.keys())
+            d_l[n] = nouv
+            v['num'] = n
 
-        lin_dic(d=v, d_l=d_l, p=p)
+            p.append(ll)
 
-        p.pop()
+            lin_dic(d=v, d_l=d_l, p=p)
+
+            p.pop()
 
 
 def gén_nombre(n_c, interdits):
