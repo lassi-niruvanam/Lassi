@@ -1,24 +1,22 @@
-from lassi.ਕੂਟਨ.ਪੈਧਾਨ import ਕੂਟਨ_ਪੈਧਾਨ
-import pprint
+from lassi.ਕਾਰ੍ਯਕ੍ਰਮ import créer_projet, ਕਾਰ੍ਯਕ੍ਰਮ
+# import pprint
+import os
 
+chemin0 = 'C:\\Users\\USERS1\\PycharmProjects\\tinamit'
+chemin = os.path.join(chemin0, '.config.json')
+if os.path.isfile(chemin):
+    ਨਮੁਨਹ = ਕਾਰ੍ਯਕ੍ਰਮ(chemin)
+else:
+    ਨਮੁਨਹ = créer_projet(chemin0, ਖੁਦ_ਜ਼ਬਾਨ='español', langues_cibles=['தமிழ்', 'اردو'], chemin_trads='trads',
+                         ign=['Interfaz', 'NuevoInterfaz', 'Incertidumbre', 'Ejemplos', 'Stella.py'])
 
-ਨਮੁਨਹ = ਕੂਟਨ_ਪੈਧਾਨ(ਕੂਟਨ_ਨਾਮ='tinamit', ਖੁਦ_ਜ਼ਬਾਨ='español', ਰਾਸ੍ਤਾ='C:\\Users\\USERS1\PycharmProjects\Tinamit',
-                   ign=['Interfaz', 'NuevoInterfaz', 'Incertidumbre', 'Ejemplos', 'Stella.py'],
-                   ਅਨੁਵਾਦ_ਦਸ੍ਤਾਵੇਜ਼='trads')
+    # print.pprint(ਨਮੁਨਹ.struct, indent=2)
 
-
-pprint.pprint(ਨਮੁਨਹ.ਕੋਸ਼, indent=2)
-
-ਨਮੁਨਹ.gén_dict_trads()
+ਨਮੁਨਹ.actualiser()
 
 ਨਮੁਨਹ.ajouter_langue('தமிழ்')
 ਨਮੁਨਹ.ajouter_langue('اردو')
-ਨਮੁਨਹ.écire_dic_pour_trad()
 
-for x, d in ਨਮੁਨਹ.ਕੋਸ਼_ਅਨੁ.items():
-    if d['español'] == 'símismo':
-        d['தமிழ்'] = 'தாங்கள்'
-        d['اردو'] = 'خود'
+ਨਮੁਨਹ.sauvegarder()
 
-ਨਮੁਨਹ.ਅਨੁਵਾਦ_ਲਿਖਣਾ(ਜ਼ਬਾਨ='தமிழ்')
-ਨਮੁਨਹ.ਅਨੁਵਾਦ_ਲਿਖਣਾ(ਜ਼ਬਾਨ='اردو')
+ਨਮੁਨਹ.ਅਨੁਵਾਦ_ਲਿਖਣਾ()
