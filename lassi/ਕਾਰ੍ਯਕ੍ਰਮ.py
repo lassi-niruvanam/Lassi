@@ -3,6 +3,7 @@ import os
 import json
 import random
 from collections import OrderedDict
+from types import ModuleType
 
 from lassi.ਕੂਟਨ.ਪੈਧਾਨ import ਕੂਟਨ_ਪੈਧਾਨ
 
@@ -31,7 +32,7 @@ class ਕਾਰ੍ਯਕ੍ਰਮ(object):
         ਖੁਦ.perdues = []
         
         try:
-            ਖੁਦ.ਕੋਸ਼_ਅਨੁ = _lire_json(os.path.join(ਖੁਦ.chemin, '.ਅਨੁ.json'))
+            ਖੁਦ.ਕੋਸ਼_ਅਨੁ = _lire_json(os.path.join(ਖੁਦ.chemin, 'ਅਨੁ.json'))
             for langue in ਖੁਦ.langues_cibles:
                 for ll, v in ਖੁਦ.ਕੋਸ਼_ਅਨੁ.items():
                     if langue not in v:
@@ -63,7 +64,7 @@ class ਕਾਰ੍ਯਕ੍ਰਮ(object):
         _écrire_json(dic=dic, doc=ਖੁਦ.chemin_config)
         
     def écrire_dic_trads(ਖੁਦ):
-        _écrire_json(ਖੁਦ.ਕੋਸ਼_ਅਨੁ, os.path.join(ਖੁਦ.chemin, '.ਅਨੁ.json'))
+        _écrire_json(ਖੁਦ.ਕੋਸ਼_ਅਨੁ, os.path.join(ਖੁਦ.chemin, 'ਅਨੁ.json'))
         
     def écrire_dic_struct(ਖੁਦ):
         _écrire_json(ਖੁਦ.struct, os.path.join(ਖੁਦ.chemin, '.struct.json'))
@@ -105,6 +106,8 @@ class ਕਾਰ੍ਯਕ੍ਰਮ(object):
                     v[l] = ''
 
     def ਅਨੁਵਾਦ_ਲਿਖਣਾ(ਖੁਦ, langues=None):
+        ਖੁਦ.ਕੋਸ਼_ਅਨੁ.clear()
+        ਖੁਦ.ਕੋਸ਼_ਅਨੁ.update(_lire_json(os.path.join(ਖੁਦ.chemin, 'ਅਨੁ.json')))
         if langues is None:
             langues = ਖੁਦ.langues_cibles
 
@@ -112,7 +115,8 @@ class ਕਾਰ੍ਯਕ੍ਰਮ(object):
 
 
 def créer_projet(chemin, ਖੁਦ_ਜ਼ਬਾਨ, langues_cibles=None, chemin_code_source=None, chemin_trads='ਅਨੁ', ign=None):
-
+    if isinstance(chemin, ModuleType):
+        chemin = os.path.split(chemin.__file__)[0]
     if os.path.split(chemin)[0] == '':
         for ਜ in ਜਗਹ.getsitepackages():
             if os.path.isdir(os.path.join(ਜ, chemin)):
