@@ -8,22 +8,22 @@ from lassi.ਕੂਟਨ.ਕੂਟਨ import ਕੂਟਨ
 
 class ਕੂਟਨ_ਪੈਧਾਨ(ਕੂਟਨ):
 
-    def _ਅਨੁਵਾਦ_ਲਿਖਣਾ(ਖੁਦ, ਰਾਸ੍ਤਾ, ਜ਼ਬਾਨ, ਕੋਸ਼_ਅਨੁ):
-        ਕੂਟਨ_ਲਿਖਣਾ(dic=ਖੁਦ.ਕੋਸ਼, d_t=ਕੋਸ਼_ਅਨੁ, ਰਾਸ੍ਤਾ=ਰਾਸ੍ਤਾ, ਜ਼ਬਾਨ=ਜ਼ਬਾਨ, pq=os.path.split(ਖੁਦ.ਰਾਸ੍ਤਾ)[1])
+    def _ਅਨੁਵਾਦ_ਲਿਖਣਾ(ਖੁਦ, ਮਾਰਗ, ਭਾਸ਼ਾ, ਕੋਸ਼_ਅਨੁ):
+        ਕੂਟਨ_ਲਿਖਣਾ(dic=ਖੁਦ.ਕੋਸ਼, d_t=ਕੋਸ਼_ਅਨੁ, ਮਾਰਗ=ਮਾਰਗ, ਭਾਸ਼ਾ=ਭਾਸ਼ਾ, pq=os.path.split(ਖੁਦ.ਮਾਰਗ)[1])
 
-    def ਪਢਨਾ(ਖੁਦ):
+    def ਪੜ੍ਹਨਾ(ਖੁਦ):
         ਖੁਦ.ਕੋਸ਼.clear()
         ਖੁਦ.ਕੋਸ਼['ਪ੍ਰਕਾਰ'] = 'ਕੂਟਨ'
         ਖੁਦ.ਕੋਸ਼['ਸੱਮਗਰੀ'] = OrderedDict()
 
-        for ਰਾ, ਨਤ੍ਥੀ, ਦਸ੍ਤ in os.walk(ਖੁਦ.ਰਾਸ੍ਤਾ):
+        for ਮ, ਨਤ੍ਥੀ, ਦਸ੍ਤ in os.walk(ਖੁਦ.ਮਾਰਗ):
 
             ਕੋਸ਼ = ਖੁਦ.ਕੋਸ਼['ਸੱਮਗਰੀ']
-            chemin_rel = os.path.relpath(ਰਾ, ਖੁਦ.ਰਾਸ੍ਤਾ)
+            chemin_rel = os.path.relpath(ਮ, ਖੁਦ.ਮਾਰਗ)
             if not vérifier(chemin_rel, ਖੁਦ.ignore):
                 continue
 
-            for ਰ in ਰਾਸ੍ਤਾ_ਟੂਠਨਾ(chemin_rel):
+            for ਰ in ਮਾਰਗ_ਟੂਠਨਾ(chemin_rel):
                 if ਰ != '.' and ਰ != '' and ਰ[0] != '_':
                     ਕੋਸ਼ = ਕੋਸ਼[ਰ]['ਸੱਮਗਰੀ']
 
@@ -35,14 +35,14 @@ class ਕੂਟਨ_ਪੈਧਾਨ(ਕੂਟਨ):
             for ਦ in ਦਸ੍ਤ:
                 if vérifier(ਦ, ਖੁਦ.ignore):
                     if (ਦ[0] != '_' or ਦ == '__init__.py') and os.path.splitext(ਦ)[1] == '.py':
-                        ਸੱਮਗਰੀ = ਦਸ੍ਤ_ਸੱਮਗਰੀ_ਪਾਣਾ(ਦ, ਰਾ)
+                        ਸੱਮਗਰੀ = ਦਸ੍ਤ_ਸੱਮਗਰੀ_ਪਾਣਾ(ਦ, ਮ)
                         if len(ਸੱਮਗਰੀ):
                             ਕੋਸ਼[ਦ] = {
                                 'ਪ੍ਰਕਾਰ': 'ਦਸ੍ਤ', 'ਸੱਮਗਰੀ': ਸੱਮਗਰੀ
                             }
 
 
-def ਕੂਟਨ_ਲਿਖਣਾ(dic, d_t, ਰਾਸ੍ਤਾ, pq, ਜ਼ਬਾਨ, ch=None, ch_orig=None):
+def ਕੂਟਨ_ਲਿਖਣਾ(dic, d_t, ਮਾਰਗ, pq, ਭਾਸ਼ਾ, ch=None, ch_orig=None):
     if ch is None:
         ch = []
     if ch_orig is None:
@@ -51,30 +51,30 @@ def ਕੂਟਨ_ਲਿਖਣਾ(dic, d_t, ਰਾਸ੍ਤਾ, pq, ਜ਼ਬਾ�
     for ll, v in dic['ਸੱਮਗਰੀ'].items():
         ਪ੍ਰਕਾਰ = v['ਪ੍ਰਕਾਰ']
         n = v['num']
-        ਨਾਮ = d_t[n][ਜ਼ਬਾਨ] if ਜ਼ਬਾਨ in d_t[n] and len(d_t[n][ਜ਼ਬਾਨ]) else ll
+        ਨਾਮ = d_t[n][ਭਾਸ਼ਾ] if ਭਾਸ਼ਾ in d_t[n] and len(d_t[n][ਭਾਸ਼ਾ]) else ll
         if ਪ੍ਰਕਾਰ == 'ਕੂਟਨ':
             pass
         elif ਪ੍ਰਕਾਰ == 'ਨਤ੍ਥੀ':
             ch.append(ਨਾਮ)
             ch_orig.append(ll)
-            ਕੂਟਨ_ਲਿਖਣਾ(dic=v, d_t=d_t, ਰਾਸ੍ਤਾ=ਰਾਸ੍ਤਾ, pq=pq, ਜ਼ਬਾਨ=ਜ਼ਬਾਨ, ch=ch, ch_orig=ch_orig)
+            ਕੂਟਨ_ਲਿਖਣਾ(dic=v, d_t=d_t, ਮਾਰਗ=ਮਾਰਗ, pq=pq, ਭਾਸ਼ਾ=ਭਾਸ਼ਾ, ch=ch, ch_orig=ch_orig)
             ch.pop()
             ch_orig.pop()
         elif ਪ੍ਰਕਾਰ == 'ਦਸ੍ਤ':
-            chemin = os.path.join(ਰਾਸ੍ਤਾ, *ch)
+            chemin = os.path.join(ਮਾਰਗ, *ch)
             if not os.path.isdir(chemin):
                 os.makedirs(chemin)
             ch.append(ਨਾਮ)
             ch_orig.append(ll)
-            with open(os.path.join(ਰਾਸ੍ਤਾ, *ch), 'w', encoding='UTF8') as d:
-                d.writelines('\n'.join(écrire_doc(dic=v, d_t=d_t, ਜ਼ਬਾਨ=ਜ਼ਬਾਨ, pq=pq, ch=ch, ch_orig=ch_orig)))
+            with open(os.path.join(ਮਾਰਗ, *ch), 'w', encoding='UTF8') as d:
+                d.writelines('\n'.join(écrire_doc(dic=v, d_t=d_t, ਭਾਸ਼ਾ=ਭਾਸ਼ਾ, pq=pq, ch=ch, ch_orig=ch_orig)))
             ch.pop()
             ch_orig.pop()
         else:
             raise ValueError(''.format(ਪ੍ਰਕਾਰ))
 
 
-def écrire_doc(dic, d_t, ਜ਼ਬਾਨ, pq, ch, ch_orig, l_f=None, ctx=None):
+def écrire_doc(dic, d_t, ਭਾਸ਼ਾ, pq, ch, ch_orig, l_f=None, ctx=None):
     if l_f is None:
         l_f = []
 
@@ -84,7 +84,7 @@ def écrire_doc(dic, d_t, ਜ਼ਬਾਨ, pq, ch, ch_orig, l_f=None, ctx=None):
             n = v['num']
         except KeyError:
             continue
-        ਨਾਮ = d_t[n][ਜ਼ਬਾਨ] if ਜ਼ਬਾਨ in d_t[n] and len(d_t[n][ਜ਼ਬਾਨ]) else nom_orig
+        ਨਾਮ = d_t[n][ਭਾਸ਼ਾ] if ਭਾਸ਼ਾ in d_t[n] and len(d_t[n][ਭਾਸ਼ਾ]) else nom_orig
 
         if ਪ੍ਰਕਾਰ == 'classe':
             ch_imp = obt_ch_imp(pq, ch_orig)
@@ -92,7 +92,7 @@ def écrire_doc(dic, d_t, ਜ਼ਬਾਨ, pq, ch, ch_orig, l_f=None, ctx=None):
             l_f.append('\n')
             l_f.insert(0, 'from {ch} import {nom_orig}'.format(ch=ch_imp, nom_orig=nom_orig))
             l_f.append('class {ਨਾਮ}({nom_orig}):'.format(ਨਾਮ=ਨਾਮ, nom_orig=nom_orig))
-            écrire_doc(dic=v, d_t=d_t, ਜ਼ਬਾਨ=ਜ਼ਬਾਨ, ch=ch, l_f=l_f, pq=pq, ctx='classe', ch_orig=ch_orig)
+            écrire_doc(dic=v, d_t=d_t, ਭਾਸ਼ਾ=ਭਾਸ਼ਾ, ch=ch, l_f=l_f, pq=pq, ctx='classe', ch_orig=ch_orig)
 
         elif ਪ੍ਰਕਾਰ == 'fonction':
             t = '    ' * (1 if ctx == 'classe' else 0)
@@ -117,7 +117,7 @@ def écrire_doc(dic, d_t, ਜ਼ਬਾਨ, pq, ch, ch_orig, l_f=None, ctx=None):
             for x, d_x in v['ਸੱਮਗਰੀ'].items():
                 if d_x['ਪ੍ਰਕਾਰ'] == 'param':
                     n = d_x['num']
-                    p = d_t[n][ਜ਼ਬਾਨ] if ਜ਼ਬਾਨ in d_t[n] and len(d_t[n][ਜ਼ਬਾਨ]) else x
+                    p = d_t[n][ਭਾਸ਼ਾ] if ਭਾਸ਼ਾ in d_t[n] and len(d_t[n][ਭਾਸ਼ਾ]) else x
 
                     if 'val' not in d_x:
                         params_conv.append(p)
@@ -130,7 +130,7 @@ def écrire_doc(dic, d_t, ਜ਼ਬਾਨ, pq, ch, ch_orig, l_f=None, ctx=None):
             for x, d_x in v['ਸੱਮਗਰੀ'].items():
                 if d_x['ਪ੍ਰਕਾਰ'] == 'param':
                     n = d_x['num']
-                    p = d_t[n][ਜ਼ਬਾਨ] if ਜ਼ਬਾਨ in d_t[n] and len(d_t[n][ਜ਼ਬਾਨ]) else x
+                    p = d_t[n][ਭਾਸ਼ਾ] if ਭਾਸ਼ਾ in d_t[n] and len(d_t[n][ਭਾਸ਼ਾ]) else x
                     conv_params.append('{}={}'.format(x, p))
             if ctx == 'classe':
                 l_f.append('')
@@ -172,25 +172,25 @@ def écrire_doc(dic, d_t, ਜ਼ਬਾਨ, pq, ch, ch_orig, l_f=None, ctx=None):
     return l_f
 
 
-def ਰਾਸ੍ਤਾ_ਟੂਠਨਾ(ਰਾਸ੍ਤਾ, ਫ=None):
+def ਮਾਰਗ_ਟੂਠਨਾ(ਮਾਰਗ, ਫ=None):
     if ਫ is None:
         ਫ = []
-    ਟੂਠੀ = os.path.split(ਰਾਸ੍ਤਾ)
+    ਟੂਠੀ = os.path.split(ਮਾਰਗ)
     ਫ.insert(0, ਟੂਠੀ[1])
     if len(ਟੂਠੀ[0]):
-        ਰਾਸ੍ਤਾ_ਟੂਠਨਾ(ਟੂਠੀ[0], ਫ=ਫ)
+        ਮਾਰਗ_ਟੂਠਨਾ(ਟੂਠੀ[0], ਫ=ਫ)
 
     return ਫ
 
 
-def ਦਸ੍ਤ_ਸੱਮਗਰੀ_ਪਾਣਾ(ਦਸ੍ਤ, ਰਾਸ੍ਤਾ):
+def ਦਸ੍ਤ_ਸੱਮਗਰੀ_ਪਾਣਾ(ਦਸ੍ਤ, ਮਾਰਗ):
     ਸੱਮਗਰੀ = OrderedDict()
 
-    with open(os.path.join(ਰਾਸ੍ਤਾ, ਦਸ੍ਤ), encoding='UTF8') as ਦ:
+    with open(os.path.join(ਮਾਰਗ, ਦਸ੍ਤ), encoding='UTF8') as ਦ:
         try:
             obj_ast = ast.parse(ਦ.read())
         except SyntaxError:
-            avertir(''.format(os.path.join(ਰਾਸ੍ਤਾ, ਦਸ੍ਤ)))
+            avertir(''.format(os.path.join(ਮਾਰਗ, ਦਸ੍ਤ)))
             return ਸੱਮਗਰੀ
 
     for o in obj_ast.body:

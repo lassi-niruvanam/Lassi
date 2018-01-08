@@ -23,7 +23,7 @@ class ਕਾਰ੍ਯਕ੍ਰਮ(object):
         except FileNotFoundError:
             raise FileNotFoundError('{}'.format(ਖੁਦ.chemin_config))
 
-        ਖੁਦ.ਖੁਦ_ਜ਼ਬਾਨ = doc['langue']
+        ਖੁਦ.ਖੁਦ_ਭਾਸ਼ਾ = doc['langue']
         ਖੁਦ.ਲੋੜੀਦਾ_ਭਾਸ਼ਾਵਾਂ = doc['ਲੋੜੀਦਾ_ਭਾਸ਼ਾਵਾਂ']
         ਖੁਦ.chemin_code_source = doc['chemin_code_source']
         ਖੁਦ.chemin_trads = doc['chemin_trads']
@@ -48,13 +48,13 @@ class ਕਾਰ੍ਯਕ੍ਰਮ(object):
                           'ਪ੍ਰਕਾਰ': 'ਕੂਟਨ'}
             
         if ਕੂਟਨ_ਭਾਸ਼ਾ == 'ਪੈਥਾਨ':
-            ਖੁਦ.ਕੂਟਨ = ਕੂਟਨ_ਪੈਧਾਨ(ਰਾਸ੍ਤਾ=ਖੁਦ.chemin_code_source, ਖੁਦ_ਜ਼ਬਾਨ=ਖੁਦ.ਖੁਦ_ਜ਼ਬਾਨ, ign=ਖੁਦ.ignore)
+            ਖੁਦ.ਕੂਟਨ = ਕੂਟਨ_ਪੈਧਾਨ(ਮਾਰਗ=ਖੁਦ.chemin_code_source, ਖੁਦ_ਭਾਸ਼ਾ=ਖੁਦ.ਖੁਦ_ਭਾਸ਼ਾ, ign=ਖੁਦ.ignore)
         else:
             raise ValueError('')
 
     def écrire_config(ਖੁਦ):
         dic = {
-            'langue': ਖੁਦ.ਖੁਦ_ਜ਼ਬਾਨ,
+            'langue': ਖੁਦ.ਖੁਦ_ਭਾਸ਼ਾ,
             'ਲੋੜੀਦਾ_ਭਾਸ਼ਾਵਾਂ': ਖੁਦ.ਲੋੜੀਦਾ_ਭਾਸ਼ਾਵਾਂ,
             'chemin_code_source': ਖੁਦ.chemin_code_source,
             'chemin_trads': ਖੁਦ.chemin_trads,
@@ -96,7 +96,7 @@ class ਕਾਰ੍ਯਕ੍ਰਮ(object):
         lin_dic(ਖੁਦ.struct, d_l=ਖੁਦ.d_lin)
         ਖੁਦ.ਕੂਟਨ.ਕੋਸ਼ = ਖੁਦ.struct
 
-        ਕੋਸ਼_ਅਨੁ = {ll: {ਖੁਦ.ਖੁਦ_ਜ਼ਬਾਨ: v['ਨਾਮ']} for ll, v in ਖੁਦ.d_lin.items()}
+        ਕੋਸ਼_ਅਨੁ = {ll: {ਖੁਦ.ਖੁਦ_ਭਾਸ਼ਾ: v['ਨਾਮ']} for ll, v in ਖੁਦ.d_lin.items()}
 
         mettre_trad_à_jour(ਖੁਦ.ਕੋਸ਼_ਅਨੁ, ਕੋਸ਼_ਅਨੁ)
 
@@ -111,10 +111,10 @@ class ਕਾਰ੍ਯਕ੍ਰਮ(object):
         if langues is None:
             langues = ਖੁਦ.ਲੋੜੀਦਾ_ਭਾਸ਼ਾਵਾਂ
 
-        ਖੁਦ.ਕੂਟਨ.ਅਨੁਵਾਦ_ਲਿਖਣਾ(ਜ਼ਬਾਨ=langues, ਰਾਸ੍ਤਾ=ਖੁਦ.chemin_trads, ਕੋਸ਼_ਅਨੁ=ਖੁਦ.ਕੋਸ਼_ਅਨੁ)
+        ਖੁਦ.ਕੂਟਨ.ਅਨੁਵਾਦ_ਲਿਖਣਾ(ਭਾਸ਼ਾ=langues, ਮਾਰਗ=ਖੁਦ.chemin_trads, ਕੋਸ਼_ਅਨੁ=ਖੁਦ.ਕੋਸ਼_ਅਨੁ)
 
 
-def ਕਰ੍ਯਕ੍ਰਮ_ਬਣਾਊ(chemin, ਖੁਦ_ਜ਼ਬਾਨ, langues_cibles=None, chemin_code_source=None, chemin_trads='ਅਨੁ', ign=None):
+def ਕਰ੍ਯਕ੍ਰਮ_ਬਣਾਊ(chemin, ਖੁਦ_ਭਾਸ਼ਾ, langues_cibles=None, chemin_code_source=None, chemin_trads='ਅਨੁ', ign=None):
     if isinstance(chemin, ModuleType):
         chemin = os.path.split(os.path.split(chemin.__file__)[0])[0]
     if os.path.split(chemin)[0] == '':
@@ -146,7 +146,7 @@ def ਕਰ੍ਯਕ੍ਰਮ_ਬਣਾਊ(chemin, ਖੁਦ_ਜ਼ਬਾਨ, lan
         chemin_trads = os.path.join(chemin_code_source, chemin_trads)
 
     dic_config = {
-        'langue': ਖੁਦ_ਜ਼ਬਾਨ,
+        'langue': ਖੁਦ_ਭਾਸ਼ਾ,
         'ਲੋੜੀਦਾ_ਭਾਸ਼ਾਵਾਂ': langues_cibles,
         'chemin_code_source': chemin_code_source,
         'chemin_trads': chemin_trads,

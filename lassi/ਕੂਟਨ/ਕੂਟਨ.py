@@ -2,39 +2,39 @@ import os
 import json
 import shutil
 
-from lassi.ਜ਼ਬਾਨੋਂ import ਜ਼ਬਾਨੋਂ
+from lassi.ਭਾਸ਼ਾਵਾਂ import ਭਾਸ਼ਾਵਾਂ
 
 
 class ਕੂਟਨ(object):
-    def __init__(ਖੁਦ, ਰਾਸ੍ਤਾ, ਖੁਦ_ਜ਼ਬਾਨ, ign):
+    def __init__(ਖੁਦ, ਮਾਰਗ, ਖੁਦ_ਭਾਸ਼ਾ, ign):
 
-        ਖੁਦ.ਰਾਸ੍ਤਾ = ਰਾਸ੍ਤਾ
+        ਖੁਦ.ਮਾਰਗ = ਮਾਰਗ
 
         ਖੁਦ.ignore = ign
 
-        ਖੁਦ.ਖੁਦ_ਜ਼ਬਾਨ = ਖੁਦ_ਜ਼ਬਾਨ
+        ਖੁਦ.ਖੁਦ_ਭਾਸ਼ਾ = ਖੁਦ_ਭਾਸ਼ਾ
 
         ਖੁਦ.ਕੋਸ਼ = {}
 
-        ਖੁਦ.ਪਢਨਾ()
+        ਖੁਦ.ਪੜ੍ਹਨਾ()
 
-    def ਪਢਨਾ(ਖੁਦ):
+    def ਪੜ੍ਹਨਾ(ਖੁਦ):
         raise NotImplementedError
 
-    def ਅਨੁਵਾਦ_ਲਿਖਣਾ(ਖੁਦ, ਜ਼ਬਾਨ, ਰਾਸ੍ਤਾ, ਕੋਸ਼_ਅਨੁ):
+    def ਅਨੁਵਾਦ_ਲਿਖਣਾ(ਖੁਦ, ਭਾਸ਼ਾ, ਮਾਰਗ, ਕੋਸ਼_ਅਨੁ):
 
-        if not isinstance(ਜ਼ਬਾਨ, list):
-            ਜ਼ਬਾਨ = [ਜ਼ਬਾਨ]
+        if not isinstance(ਭਾਸ਼ਾ, list):
+            ਭਾਸ਼ਾ = [ਭਾਸ਼ਾ]
 
-        for ਜ਼ in ਜ਼ਬਾਨ:
-            code = ਜ਼ਬਾਨੋਂ[ਜ਼]['code']
-            ਰਾਸ੍ਤਾ_ਜ਼ = os.path.join(ਰਾਸ੍ਤਾ, code)
+        for ਜ਼ in ਭਾਸ਼ਾ:
+            code = ਭਾਸ਼ਾਵਾਂ[ਜ਼]['code']
+            ਮਾਰਗ_ਜ਼ = os.path.join(ਮਾਰਗ, code)
 
-            if os.path.isdir(ਰਾਸ੍ਤਾ_ਜ਼):
-                shutil.rmtree(ਰਾਸ੍ਤਾ_ਜ਼)
-            ਖੁਦ._ਅਨੁਵਾਦ_ਲਿਖਣਾ(ਰਾਸ੍ਤਾ=ਰਾਸ੍ਤਾ_ਜ਼, ਜ਼ਬਾਨ=ਜ਼, ਕੋਸ਼_ਅਨੁ=ਕੋਸ਼_ਅਨੁ)
+            if os.path.isdir(ਮਾਰਗ_ਜ਼):
+                shutil.rmtree(ਮਾਰਗ_ਜ਼)
+            ਖੁਦ._ਅਨੁਵਾਦ_ਲਿਖਣਾ(ਮਾਰਗ=ਮਾਰਗ_ਜ਼, ਭਾਸ਼ਾ=ਜ਼, ਕੋਸ਼_ਅਨੁ=ਕੋਸ਼_ਅਨੁ)
 
-    def _ਅਨੁਵਾਦ_ਲਿਖਣਾ(ਖੁਦ, ਰਾਸ੍ਤਾ, ਜ਼ਬਾਨ, ਕੋਸ਼_ਅਨੁ):
+    def _ਅਨੁਵਾਦ_ਲਿਖਣਾ(ਖੁਦ, ਮਾਰਗ, ਭਾਸ਼ਾ, ਕੋਸ਼_ਅਨੁ):
         raise NotImplementedError
 
 

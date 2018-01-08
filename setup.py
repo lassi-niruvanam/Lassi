@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 directorio = os.path.split(os.path.realpath(__file__))[0]
 
-with open(os.path.join(directorio, 'lassi', 'versión.txt')) as archivo_versión:
+with open(os.path.join(directorio, 'lassi', 'ਸੰਸਕਰਣ.txt')) as archivo_versión:
     versión = archivo_versión.read().strip()
 
 setup(

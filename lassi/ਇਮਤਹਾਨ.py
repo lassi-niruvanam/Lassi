@@ -8,7 +8,7 @@ chemin2 = os.path.join(chemin0, 'trads', '.config.json')
 if os.path.isfile(chemin2):
     ਨਮੁਨਹ = ਕਾਰ੍ਯਕ੍ਰਮ(chemin2)
 else:
-    ਨਮੁਨਹ = ਕਰ੍ਯਕ੍ਰਮ_ਬਣਾਊ(tinamit, ਖੁਦ_ਜ਼ਬਾਨ='español', langues_cibles=['தமிழ்', 'اردو'], chemin_trads='trads',
+    ਨਮੁਨਹ = ਕਰ੍ਯਕ੍ਰਮ_ਬਣਾਊ(tinamit, ਖੁਦ_ਭਾਸ਼ਾ='español', langues_cibles=['தமிழ்', 'اردو'], chemin_trads='trads',
                           ign=['Interfaz', 'NuevoInterfaz', 'Incertidumbre', 'Ejemplos', 'Stella.py'])
 
     # print.pprint(ਨਮੁਨਹ.struct, indent=2)
