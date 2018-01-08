@@ -259,7 +259,7 @@ def lire_fonc(o, d):
     }
 
 
-def val(o):
+def val(o, depurar=True):
     if isinstance(o, ast.Num):
         return o.n
     elif isinstance(o, ast.Name):
@@ -283,7 +283,10 @@ def val(o):
     elif isinstance(o, ast.SetComp):
         raise NotImplementedError
     else:
-        raise TypeError(''.format(type(o)))
+        if depurar:
+            avertir('{}'.format(type(o)))
+        else:
+            raise TypeError(''.format(type(o)))
 
 
 def vérifier(obj, ignore):

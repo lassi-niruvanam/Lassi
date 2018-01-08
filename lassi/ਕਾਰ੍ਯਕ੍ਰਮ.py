@@ -9,14 +9,14 @@ from lassi.ਕੂਟਨ.ਪੈਧਾਨ import ਕੂਟਨ_ਪੈਧਾਨ
 
 
 class ਕਾਰ੍ਯਕ੍ਰਮ(object):
-    def __init__(ਖੁਦ, chemin, lang_prog='Python'):
+    def __init__(ਖੁਦ, ਮਾਰਗ, ਕੂਟਨ_ਭਾਸ਼ਾ='ਪੈਥਾਨ'):
 
-        if os.path.split(chemin)[1] == '.config.json':
-            ਖੁਦ.chemin_config = chemin
-            ਖੁਦ.chemin = os.path.split(chemin)[0]
+        if os.path.split(ਮਾਰਗ)[1] == '.config.json':
+            ਖੁਦ.chemin_config = ਮਾਰਗ
+            ਖੁਦ.chemin = os.path.split(ਮਾਰਗ)[0]
         else:
-            ਖੁਦ.chemin_config = os.path.join(chemin, '.config.json')
-            ਖੁਦ.chemin = chemin
+            ਖੁਦ.chemin_config = os.path.join(ਮਾਰਗ, '.config.json')
+            ਖੁਦ.chemin = ਮਾਰਗ
 
         try:
             doc = _lire_json(ਖੁਦ.chemin_config)
@@ -24,7 +24,7 @@ class ਕਾਰ੍ਯਕ੍ਰਮ(object):
             raise FileNotFoundError('{}'.format(ਖੁਦ.chemin_config))
 
         ਖੁਦ.ਖੁਦ_ਜ਼ਬਾਨ = doc['langue']
-        ਖੁਦ.langues_cibles = doc['langues_cibles']
+        ਖੁਦ.ਲੋੜੀਦਾ_ਭਾਸ਼ਾਵਾਂ = doc['ਲੋੜੀਦਾ_ਭਾਸ਼ਾਵਾਂ']
         ਖੁਦ.chemin_code_source = doc['chemin_code_source']
         ਖੁਦ.chemin_trads = doc['chemin_trads']
         ਖੁਦ.ignore = doc['ignore']
@@ -33,7 +33,7 @@ class ਕਾਰ੍ਯਕ੍ਰਮ(object):
         
         try:
             ਖੁਦ.ਕੋਸ਼_ਅਨੁ = _lire_json(os.path.join(ਖੁਦ.chemin, 'ਅਨੁ.json'))
-            for langue in ਖੁਦ.langues_cibles:
+            for langue in ਖੁਦ.ਲੋੜੀਦਾ_ਭਾਸ਼ਾਵਾਂ:
                 for ll, v in ਖੁਦ.ਕੋਸ਼_ਅਨੁ.items():
                     if langue not in v:
                         v[langue] = ''
@@ -47,7 +47,7 @@ class ਕਾਰ੍ਯਕ੍ਰਮ(object):
             ਖੁਦ.struct = {'ਸੱਮਗਰੀ': OrderedDict(),
                           'ਪ੍ਰਕਾਰ': 'ਕੂਟਨ'}
             
-        if lang_prog == 'Python':
+        if ਕੂਟਨ_ਭਾਸ਼ਾ == 'ਪੈਥਾਨ':
             ਖੁਦ.ਕੂਟਨ = ਕੂਟਨ_ਪੈਧਾਨ(ਰਾਸ੍ਤਾ=ਖੁਦ.chemin_code_source, ਖੁਦ_ਜ਼ਬਾਨ=ਖੁਦ.ਖੁਦ_ਜ਼ਬਾਨ, ign=ਖੁਦ.ignore)
         else:
             raise ValueError('')
@@ -55,7 +55,7 @@ class ਕਾਰ੍ਯਕ੍ਰਮ(object):
     def écrire_config(ਖੁਦ):
         dic = {
             'langue': ਖੁਦ.ਖੁਦ_ਜ਼ਬਾਨ,
-            'langues_cibles': ਖੁਦ.langues_cibles,
+            'ਲੋੜੀਦਾ_ਭਾਸ਼ਾਵਾਂ': ਖੁਦ.ਲੋੜੀਦਾ_ਭਾਸ਼ਾਵਾਂ,
             'chemin_code_source': ਖੁਦ.chemin_code_source,
             'chemin_trads': ਖੁਦ.chemin_trads,
             'ignore': ਖੁਦ.ignore
@@ -74,17 +74,17 @@ class ਕਾਰ੍ਯਕ੍ਰਮ(object):
         ਖੁਦ.écrire_dic_trads()
         ਖੁਦ.écrire_dic_struct()
 
-    def ajouter_langue(ਖੁਦ, langues):
-        if not isinstance(langues, list):
-            langues = [langues]
+    def ਭਾਸ਼ਾਵਾਂ_ਜੋੜਨਾ(ਖੁਦ, ਭਾਸ਼ਾਵਾਂ):
+        if not isinstance(ਭਾਸ਼ਾਵਾਂ, list):
+            ਭਾਸ਼ਾਵਾਂ = [ਭਾਸ਼ਾਵਾਂ]
 
-        for langue in langues:
-            if langue not in ਖੁਦ.langues_cibles:
-                ਖੁਦ.langues_cibles.append(langue)
+        for ਭਾਸ਼ਾ in ਭਾਸ਼ਾਵਾਂ:
+            if ਭਾਸ਼ਾ not in ਖੁਦ.ਲੋੜੀਦਾ_ਭਾਸ਼ਾਵਾਂ:
+                ਖੁਦ.ਲੋੜੀਦਾ_ਭਾਸ਼ਾਵਾਂ.append(ਭਾਸ਼ਾ)
 
-                for ll, v in ਖੁਦ.ਕੋਸ਼_ਅਨੁ.items():
-                    if langue not in v:
-                        v[langue] = ''
+                for ਕੁੰ, ਮੁ in ਖੁਦ.ਕੋਸ਼_ਅਨੁ.items():
+                    if ਭਾਸ਼ਾ not in ਮੁ:
+                        ਮੁ[ਭਾਸ਼ਾ] = ''
 
     def actualiser(ਖੁਦ):
 
@@ -101,7 +101,7 @@ class ਕਾਰ੍ਯਕ੍ਰਮ(object):
         mettre_trad_à_jour(ਖੁਦ.ਕੋਸ਼_ਅਨੁ, ਕੋਸ਼_ਅਨੁ)
 
         for v in ਖੁਦ.ਕੋਸ਼_ਅਨੁ.values():
-            for l in ਖੁਦ.langues_cibles:
+            for l in ਖੁਦ.ਲੋੜੀਦਾ_ਭਾਸ਼ਾਵਾਂ:
                 if l not in v:
                     v[l] = ''
 
@@ -109,14 +109,14 @@ class ਕਾਰ੍ਯਕ੍ਰਮ(object):
         ਖੁਦ.ਕੋਸ਼_ਅਨੁ.clear()
         ਖੁਦ.ਕੋਸ਼_ਅਨੁ.update(_lire_json(os.path.join(ਖੁਦ.chemin, 'ਅਨੁ.json')))
         if langues is None:
-            langues = ਖੁਦ.langues_cibles
+            langues = ਖੁਦ.ਲੋੜੀਦਾ_ਭਾਸ਼ਾਵਾਂ
 
         ਖੁਦ.ਕੂਟਨ.ਅਨੁਵਾਦ_ਲਿਖਣਾ(ਜ਼ਬਾਨ=langues, ਰਾਸ੍ਤਾ=ਖੁਦ.chemin_trads, ਕੋਸ਼_ਅਨੁ=ਖੁਦ.ਕੋਸ਼_ਅਨੁ)
 
 
-def créer_projet(chemin, ਖੁਦ_ਜ਼ਬਾਨ, langues_cibles=None, chemin_code_source=None, chemin_trads='ਅਨੁ', ign=None):
+def ਕਰ੍ਯਕ੍ਰਮ_ਬਣਾਊ(chemin, ਖੁਦ_ਜ਼ਬਾਨ, langues_cibles=None, chemin_code_source=None, chemin_trads='ਅਨੁ', ign=None):
     if isinstance(chemin, ModuleType):
-        chemin = os.path.split(chemin.__file__)[0]
+        chemin = os.path.split(os.path.split(chemin.__file__)[0])[0]
     if os.path.split(chemin)[0] == '':
         for ਜ in ਜਗਹ.getsitepackages():
             if os.path.isdir(os.path.join(ਜ, chemin)):
@@ -125,6 +125,8 @@ def créer_projet(chemin, ਖੁਦ_ਜ਼ਬਾਨ, langues_cibles=None, chemin
 
     if langues_cibles is None:
         langues_cibles = []
+    if not isinstance(langues_cibles, list):
+        langues_cibles = [langues_cibles]
 
     if chemin_code_source is None:
         nom = os.path.split(chemin)[1]
@@ -133,6 +135,9 @@ def créer_projet(chemin, ਖੁਦ_ਜ਼ਬਾਨ, langues_cibles=None, chemin
         else:
             chemin_code_source = chemin
 
+    if ign is None:
+        ign = []
+
     if chemin_trads not in ign:
         ign.append(chemin_trads)
 
@@ -140,13 +145,9 @@ def créer_projet(chemin, ਖੁਦ_ਜ਼ਬਾਨ, langues_cibles=None, chemin
         chemin = os.path.join(chemin, chemin_trads)
         chemin_trads = os.path.join(chemin_code_source, chemin_trads)
 
-    if ign is None:
-        ign = []
-
-
     dic_config = {
         'langue': ਖੁਦ_ਜ਼ਬਾਨ,
-        'langues_cibles': langues_cibles,
+        'ਲੋੜੀਦਾ_ਭਾਸ਼ਾਵਾਂ': langues_cibles,
         'chemin_code_source': chemin_code_source,
         'chemin_trads': chemin_trads,
         'ignore': [] if ign is None else ign
@@ -154,7 +155,7 @@ def créer_projet(chemin, ਖੁਦ_ਜ਼ਬਾਨ, langues_cibles=None, chemin
 
     _écrire_json(dic_config, os.path.join(chemin, '.config.json'))
     
-    return ਕਾਰ੍ਯਕ੍ਰਮ(chemin=chemin)
+    return ਕਾਰ੍ਯਕ੍ਰਮ(ਮਾਰਗ=chemin)
 
 
 def mettre_struct_à_jour(d_o, d_n, p=None, n=None):
