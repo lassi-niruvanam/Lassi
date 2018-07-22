@@ -3,7 +3,7 @@ from lassi.ਕਾਰ੍ਯਕ੍ਰਮ import ਕਰ੍ਯਕ੍ਰਮ_ਬਣਾ
 import os
 import tinamit
 
-chemin0 = os.path.split(tinamit.__file__)[0]
+chemin0 = os.path.split(os.path.split(tinamit.__file__)[0])[0]
 chemin2 = os.path.join(chemin0, 'trads', '.config.json')
 if os.path.isfile(chemin2):
     ਨਮੁਨਹ = ਕਾਰ੍ਯਕ੍ਰਮ(chemin2)

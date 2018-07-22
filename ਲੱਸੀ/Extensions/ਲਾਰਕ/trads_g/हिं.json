@@ -1,0 +1,166 @@
+{
+  "ext": ".lark",
+  "langue": "हिं",
+  "règles": [
+    {
+      "orig": "start:line*\n\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "line:NL\n    |rule\n    |token\n    |statement\n\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "rule:RULEpriority?\":\"expansionsNL\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "token:TOKENpriority?\":\"expansionsNL\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "priority:\".\"NUMBER\n\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "statement:ignore\n    |import\n\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "ignore:\"%ignore \"expansionsNL\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "import:\"%import \"import_args[\"->\"TOKEN]NL\n\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "import_args:name(\".\"name)*\n\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "expansions:exp_or_alias(VBARexp_or_alias)*\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "exp_or_alias:alias|expansion\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "alias:expansion\"->\"RULE\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "expansion:expr*\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "expr:atom[OP|\"~\"NUMBER[\"..\"NUMBER]]\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "atom:group\n    |maybe\n    |literal_range\n    |name\n    |(REGEXP|STRING)\n\n\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "name:RULE\n    |TOKEN\n\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "maybe:\"[\"expansions\"]\"\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "group:\"(\"expansions\")\"\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "literal_range:STRING\"..\"STRING\n\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "RULE:/!?[_?]?[a-z][_a-z0-9]*/\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "VBAR:NL?\"|\"\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "OP:/[+*][?]?|[?](?![a-z])/\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "TOKEN:/_?[A-Z][_A-Z0-9]*/\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "STRING:ESCAPED_STRING\"i\"?\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "REGEXP:/\\/(?!\\/)(\\\\\\/|\\\\\\\\|[^\\/\\n])*?\\/[imslux]*/\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "NL:/(\\r?\\n)+\\s*/\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "COMMENT:\"//\"/[^\\n]/*\n\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "%import common.ESCAPED_STRING\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "%import common.INT->NUMBER\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "%import common.WS_INLINE\n\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "%ignore WS_INLINE\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "%ignore COMMENT\n",
+      "trad": "",
+      "status": "à faire"
+    }
+  ]
+}

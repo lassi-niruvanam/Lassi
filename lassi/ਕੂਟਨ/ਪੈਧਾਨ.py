@@ -126,6 +126,10 @@ def écrire_doc(dic, d_t, ਭਾਸ਼ਾ, pq, ch, ch_orig, l_f=None, ctx=None):
                             params_conv.append('{}="{}"'.format(p, d_x['val']))
                         else:
                             params_conv.append('{}={}'.format(p, d_x['val']))
+            paráms_val = [x for x in params_conv if '=' in x]
+            paráms_sin_val = [x for x in params_conv if x not in paráms_val]
+            params_conv = paráms_sin_val + paráms_val
+
             conv_params = []
             for x, d_x in v['ਸੱਮਗਰੀ'].items():
                 if d_x['ਪ੍ਰਕਾਰ'] == 'param':

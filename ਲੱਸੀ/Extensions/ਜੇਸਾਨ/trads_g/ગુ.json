@@ -1,0 +1,56 @@
+{
+  "ext": ".json",
+  "langue": "ગુ",
+  "règles": [
+    {
+      "orig": "?start:value\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "?value:object\n      |array\n      |string\n      |SIGNED_NUMBER->number\n      |\"true\"->true\n      |\"false\"->false\n      |\"null\"->null\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "array:\"[\"[value(\",\"value)*]\"]\"\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "object:\"{\"[pair(\",\"pair)*]\"}\"\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "pair:string\":\"value\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "string:ESCAPED_STRING\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "%import common.ESCAPED_STRING\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "%import common.SIGNED_NUMBER\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "%import common.WS\n",
+      "trad": "",
+      "status": "à faire"
+    },
+    {
+      "orig": "%ignore WS\n",
+      "trad": "",
+      "status": "à faire"
+    }
+  ]
+}
