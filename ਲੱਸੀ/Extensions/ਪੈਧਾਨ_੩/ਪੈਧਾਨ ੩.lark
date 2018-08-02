@@ -12,18 +12,18 @@
 //       file_input is a module or sequence of commands read from an input file;
 //       eval_input is the input for the eval() functions.
 // NB: compound_stmt in single_input is followed by extra NEWLINE!
-single_input: _NEWLINE | simple_stmt | compound_stmt _NEWLINE
-file_input: (_NEWLINE | stmt)*
-eval_input: testlist _NEWLINE*
+single_input: NEWLINE | simple_stmt | compound_stmt NEWLINE
+file_input: (NEWLINE | stmt)*
+eval_input: testlist NEWLINE*
 
-decorator: "@" dotted_name [ "(" [arguments] ")" ] _NEWLINE
+!decorator: "@" dotted_name [ "(" [arguments] ")" ] NEWLINE
 decorators: decorator+
 decorated: decorators (classdef | funcdef | async_funcdef)
 
 async_funcdef: "async" funcdef
 funcdef: "def" NAME "(" parameters? ")" ["->" test] ":" suite
 
-parameters: paramvalue ("," paramvalue)* ["," [ starparams | kwparams]]
+!parameters: paramvalue ("," paramvalue)* ["," [ starparams | kwparams]]
           | starparams
           | kwparams
 starparams: "*" typedparam? ("," paramvalue)* ["," kwparams]
@@ -32,24 +32,24 @@ kwparams: "**" typedparam
 ?paramvalue: typedparam ["=" test]
 ?typedparam: NAME [":" test]
 
-varargslist: (vfpdef ["=" test] ("," vfpdef ["=" test])* ["," [ "*" [vfpdef] ("," vfpdef ["=" test])* ["," ["**" vfpdef [","]]] | "**" vfpdef [","]]]
+!varargslist: (vfpdef ["=" test] ("," vfpdef ["=" test])* ["," [ "*" [vfpdef] ("," vfpdef ["=" test])* ["," ["**" vfpdef [","]]] | "**" vfpdef [","]]]
   | "*" [vfpdef] ("," vfpdef ["=" test])* ["," ["**" vfpdef [","]]]
   | "**" vfpdef [","])
 
 vfpdef: NAME
 
 ?stmt: simple_stmt | compound_stmt
-?simple_stmt: small_stmt (";" small_stmt)* [";"] _NEWLINE
+!?simple_stmt: small_stmt (";" small_stmt)* [";"] NEWLINE
 ?small_stmt: (expr_stmt | del_stmt | pass_stmt | flow_stmt | import_stmt | global_stmt | nonlocal_stmt | assert_stmt)
 ?expr_stmt: testlist_star_expr (annassign | augassign (yield_expr|testlist)
          | ("=" (yield_expr|testlist_star_expr))*)
 annassign: ":" test ["=" test]
-?testlist_star_expr: (test|star_expr) ("," (test|star_expr))* [","]
+!?testlist_star_expr: (test|star_expr) ("," (test|star_expr))* [","]
 !augassign: ("+=" | "-=" | "*=" | "@=" | "/=" | "%=" | "&=" | "|=" | "^=" | "<<=" | ">>=" | "**=" | "//=")
 // For normal and annotated assignments, additional restrictions enforced by the interpreter
 del_stmt: "del" exprlist
 pass_stmt: "pass"
-?flow_stmt: break_stmt | continue_stmt | return_stmt | raise_stmt | yield_stmt
+flow_stmt: break_stmt | continue_stmt | return_stmt | raise_stmt | yield_stmt
 break_stmt: "break"
 continue_stmt: "continue"
 return_stmt: "return" [testlist]
@@ -62,7 +62,7 @@ import_from: "from" (dots? dotted_name | dots) "import" ("*" | "(" import_as_nam
 !dots: "."+
 import_as_name: NAME ["as" NAME]
 dotted_as_name: dotted_name ["as" NAME]
-import_as_names: import_as_name ("," import_as_name)* [","]
+!import_as_names: import_as_name ("," import_as_name)* [","]
 dotted_as_names: dotted_as_name ("," dotted_as_name)*
 dotted_name: NAME ("." NAME)*
 global_stmt: "global" NAME ("," NAME)*
@@ -79,7 +79,7 @@ with_stmt: "with" with_item ("," with_item)*  ":" suite
 with_item: test ["as" expr]
 // NB compile.c makes sure that the default except clause is last
 except_clause: "except" [test ["as" NAME]]
-suite: simple_stmt | _NEWLINE _INDENT stmt+ _DEDENT
+suite: simple_stmt | NEWLINE INDENT stmt+ DEDENT
 
 ?test: or_test ["if" or_test "else" test] | lambdef
 ?test_nocond: or_test | lambdef_nocond
@@ -87,6 +87,7 @@ lambdef: "lambda" [varargslist] ":" test
 lambdef_nocond: "lambda" [varargslist] ":" test_nocond
 ?or_test: and_test ("or" and_test)*
 ?and_test: not_test ("and" not_test)*
+
 ?not_test: "not" not_test -> not
          | comparison
 ?comparison: expr (_comp_op expr)*
@@ -108,7 +109,7 @@ star_expr: "*" expr
 !_comp_op: "<"|">"|"=="|">="|"<="|"<>"|"!="|"in"|"not" "in"|"is"|"is" "not"
 
 ?power: await_expr ["**" factor]
-?await_expr: AWAIT? atom_expr
+await_expr: AWAIT? atom_expr
 AWAIT: "await"
 
 ?atom_expr: atom_expr "(" [arguments] ")"      -> funccall
@@ -127,27 +128,24 @@ AWAIT: "await"
      | "True"    -> const_true
      | "False"   -> const_false
 
-?testlist_comp: (test|star_expr) [comp_for | ("," (test|star_expr))+ [","] | ","]
-subscriptlist: subscript ("," subscript)* [","]
+!?testlist_comp: (test|star_expr) [comp_for | ("," (test|star_expr))+ [","] | ","]
+!subscriptlist: subscript ("," subscript)* [","]
 subscript: test | [test] ":" [test] [sliceop]
 sliceop: ":" [test]
-exprlist: (expr|star_expr) ("," (expr|star_expr))* [","]
-testlist: test ("," test)* [","]
-dictorsetmaker: ( ((test ":" test | "**" expr) (comp_for | ("," (test ":" test | "**" expr))* [","])) | ((test | star_expr) (comp_for | ("," (test | star_expr))* [","])) )
+!exprlist: (expr|star_expr) ("," (expr|star_expr))* [","]
+!testlist: test ("," test)* [","]
+!dictorsetmaker: ( ((test ":" test | "**" expr) (comp_for | ("," (test ":" test | "**" expr))* [","])) | ((test | star_expr) (comp_for | ("," (test | star_expr))* [","])) )
 
 classdef: "class" NAME ["(" [arguments] ")"] ":" suite
-
-arguments: argvalue ("," argvalue)*  ["," [ starargs | kwargs]]
+!arguments: argvalue ("," argvalue)*  ["," [ starargs | kwargs]]
          | starargs
          | kwargs
          | test comp_for
 
-starargs: "*" test ("," "*" test)* ("," argvalue)* ["," kwargs]
+!starargs: "*" test ("," "*" test)* ("," argvalue)* ["," kwargs]
 kwargs: "**" test
 
 ?argvalue: test ["=" test]
-
-
 
 comp_iter: comp_for | comp_if | async_for
 async_for: "async" "for" exprlist "in" or_test [comp_iter]
@@ -157,7 +155,7 @@ comp_if: "if" test_nocond [comp_iter]
 // not used in grammar, but may appear in "node" passed from Parser to Compiler
 encoding_decl: NAME
 
-yield_expr: "yield" [yield_arg]
+yield_expr: "yield" [" " yield_arg]
 yield_arg: "from" test | testlist
 
 
@@ -167,7 +165,7 @@ string: STRING | LONG_STRING
 
 NAME: /[a-zA-Z_]\w*/
 COMMENT: /#[^\n]*/
-_NEWLINE: ( /\r?\n[\t ]*/ | COMMENT )+
+NEWLINE: ( /\r?\n[\t ]*/ | COMMENT )+
 
 
 STRING : /[ubf]?r?("(?!"").*?(?<!\\)(\\\\)*?"|'(?!'').*?(?<!\\)(\\\\)*?')/i
@@ -183,4 +181,4 @@ IMAG_NUMBER.2: /\d+j|${FLOAT_NUMBER}j/i
 %ignore /[\t \f]+/  // WS
 %ignore /\\[\t \f]*\r?\n/   // LINE_CONT
 %ignore COMMENT
-%declare _INDENT _DEDENT
+%declare INDENT DEDENT
