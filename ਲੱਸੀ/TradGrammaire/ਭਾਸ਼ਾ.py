@@ -17,9 +17,9 @@ class ਵਿਆਕਰਣ_ਵਧਾ(object):
     ਸ਼ਬਦ_ਵਿਸ਼_ਬਦਲ = {'parser': 'lalr'}
     ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ = {}
 
-    doc_src_trads = './trads_g/_src.json'
-    dir_trads = './trads_g'
-    dir_comp = './comp'
+    doc_src_trads = './ਵਿਆ_ਅਨੁ/_ਸਰੋਤ.json'
+    dir_trads = './ਵਿਆ_ਅਨੁ'
+    dir_comp = './ਸੰਕਲਿਤ'
 
     reconstr = {}
     analyseurs = {}
@@ -66,10 +66,12 @@ class ਵਿਆਕਰਣ_ਵਧਾ(object):
     def obt_doc_trad_gram(ਖੁਦ, langue):
         if langue == ਖੁਦ.ਸਰੋਤ_ਭਾ:
             return ਖੁਦ.ਵਿਆ
-
+        with open(os.path.join(ਖੁਦ.dir_trads, langue + '.json')) as d:
+            spec_gram = json.load(d)
         if not os.path.isdir(ਖੁਦ.dir_comp):
             os.mkdir(ਖੁਦ.dir_comp)
-        raise NotImplementedError
+        with open(os.path.join(ਖੁਦ.dir_comp, langue + '.lark')) as d:
+            d.writelines([x['ਅਨੁ'] if len(x[['ਅਨੁ']]) else x["ਸਰੋਤ"] for x in spec_gram['ਨਿਯਮ']])
 
     def obt_analyseur(ਖੁਦ, langue):
 
