@@ -4,22 +4,19 @@ import os
 from lark import Lark, Tree
 from lark.reconstruct import Reconstructor
 
-with open('../ਲਾਰਕ/ਲਾਰਕ.lark') as d:
-    gram_lark = d.read()
-ਵਿਸ਼ਲੇਸ਼ਣ = Lark(grammar=gram_lark, parser='lalr', lexer='contextual')
 
-
-class ਵਿਆਕਰਣ_ਵਧਾ(object):
+class ਵਿਆਕਰਣ_ਵਾਧਾ(object):
     ਵਿਆ = NotImplemented
     ਵਾਧਾ = NotImplemented
     ਸਰੋਤ_ਭਾ = NotImplemented
+    dir = NotImplemented
 
     ਸ਼ਬਦ_ਵਿਸ਼_ਬਦਲ = {'parser': 'lalr'}
     ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ = {}
 
-    doc_src_trads = './ਵਿਆ_ਅਨੁ/_ਸਰੋਤ.json'
-    dir_trads = './ਵਿਆ_ਅਨੁ'
-    dir_comp = './ਸੰਕਲਿਤ'
+    doc_src_trads = 'ਵਿਆ_ਅਨੁ/_ਸਰੋਤ.json'
+    dir_trads = 'ਵਿਆ_ਅਨੁ'
+    dir_comp = 'ਸੰਕਲਿਤ'
 
     reconstr = {}
     analyseurs = {}
@@ -66,12 +63,13 @@ class ਵਿਆਕਰਣ_ਵਧਾ(object):
     def obt_doc_trad_gram(ਖੁਦ, langue):
         if langue == ਖੁਦ.ਸਰੋਤ_ਭਾ:
             return ਖੁਦ.ਵਿਆ
-        with open(os.path.join(ਖੁਦ.dir_trads, langue + '.json')) as d:
+        with open(os.path.join(ਖੁਦ.dir, ਖੁਦ.dir_trads, langue + '.json'), encoding='UTF-8') as d:
             spec_gram = json.load(d)
-        if not os.path.isdir(ਖੁਦ.dir_comp):
-            os.mkdir(ਖੁਦ.dir_comp)
-        with open(os.path.join(ਖੁਦ.dir_comp, langue + '.lark')) as d:
-            d.writelines([x['ਅਨੁ'] if len(x[['ਅਨੁ']]) else x["ਸਰੋਤ"] for x in spec_gram['ਨਿਯਮ']])
+        if not os.path.isdir(os.path.join(ਖੁਦ.dir, ਖੁਦ.dir_comp)):
+            os.mkdir(os.path.join(ਖੁਦ.dir, ਖੁਦ.dir_comp))
+        with open(os.path.join(ਖੁਦ.dir, ਖੁਦ.dir_comp, langue + '.lark'), 'w', encoding='UTF-8') as d:
+            d.writelines([x['ਅਨੁ'] if len(x['ਅਨੁ']) else x["ਸਰੋਤ"] for x in spec_gram['ਨਿਯਮ']])
+        return os.path.join(ਖੁਦ.dir, ਖੁਦ.dir_comp, langue + '.lark')
 
     def obt_analyseur(ਖੁਦ, langue):
 

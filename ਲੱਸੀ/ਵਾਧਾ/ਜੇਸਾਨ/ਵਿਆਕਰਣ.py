@@ -1,9 +1,9 @@
 import pprint
 
-from ਲੱਸੀ.TradGrammaire.ਭਾਸ਼ਾ import ਵਿਆਕਰਣ_ਵਧਾ
+from ਲੱਸੀ.TradGrammaire.ਭਾਸ਼ਾ import ਵਿਆਕਰਣ_ਵਾਧਾ
 
 
-class GrammaireJSON(ਵਿਆਕਰਣ_ਵਧਾ):
+class GrammaireJSON(ਵਿਆਕਰਣ_ਵਾਧਾ):
     ਵਿਆ = 'ਜੇਸਾਨ.lark'
     ਵਾਧਾ = '.json'
     ਸਰੋਤ_ਭਾ = 'en'
@@ -11,6 +11,7 @@ class GrammaireJSON(ਵਿਆਕਰਣ_ਵਧਾ):
     def ਬਾਅਦ_ਕਾਰਵਾਈ(ਖੁਦ, ਦਸਤ):
         return pprint.pformat(ਦਸਤ)
 
-g = GrammaireJSON()
-g.gén_arch_trads()
-g.gén_trads(['த', 'ગુ', 'हिं', 'fr', 'kaq'])
+if __name__ == '__main__':
+    g = GrammaireJSON()
+    g.gén_arch_trads()
+    g.gén_trads(['த', 'ગુ', 'हिं', 'fr', 'kaq'])
