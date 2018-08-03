@@ -1,0 +1,577 @@
+{
+  "ਵਾਧਾ": ".py",
+  "ਸਰੋਤ_ਭਾ": "en",
+  "ਨਿਯਮ": [
+    {
+      "ਸਰੋਤ": "single_input : NEWLINE | simple_stmt | compound_stmt NEWLINE \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "file_input : ( NEWLINE | stmt ) * \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "eval_input : testlist NEWLINE * \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "!decorator : \"@\" dotted_name [ \"(\" [ arguments ] \")\" ] NEWLINE \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "decorators : decorator + \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "decorated : decorators ( classdef | funcdef | async_funcdef ) \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "async_funcdef : \"async\" funcdef \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "funcdef : \"def\" NAME \"(\" parameters ? \")\" [ \"->\" test ] \":\" suite \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "!parameters : paramvalue ( \",\" paramvalue ) * [ \",\" [ starparams | kwparams ] ] \n          | starparams \n          | kwparams \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "starparams : \"*\" typedparam ? ( \",\" paramvalue ) * [ \",\" kwparams ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "kwparams : \"**\" typedparam \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?paramvalue : typedparam [ \"=\" test ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?typedparam : NAME [ \":\" test ] \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "!varargslist : ( vfpdef [ \"=\" test ] ( \",\" vfpdef [ \"=\" test ] ) * [ \",\" [ \"*\" [ vfpdef ] ( \",\" vfpdef [ \"=\" test ] ) * [ \",\" [ \"**\" vfpdef [ \",\" ] ] ] | \"**\" vfpdef [ \",\" ] ] ] \n  | \"*\" [ vfpdef ] ( \",\" vfpdef [ \"=\" test ] ) * [ \",\" [ \"**\" vfpdef [ \",\" ] ] ] \n  | \"**\" vfpdef [ \",\" ] ) \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "vfpdef : NAME \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?stmt : simple_stmt | compound_stmt \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "!?simple_stmt : small_stmt ( \";\" small_stmt ) * [ \";\" ] NEWLINE \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?small_stmt : ( expr_stmt | del_stmt | pass_stmt | flow_stmt | import_stmt | global_stmt | nonlocal_stmt | assert_stmt ) \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?expr_stmt : testlist_star_expr ( annassign | augassign ( yield_expr | testlist ) \n         | ( \"=\" ( yield_expr | testlist_star_expr ) ) * ) \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "annassign : \":\" test [ \"=\" test ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "!?testlist_star_expr : ( test | star_expr ) ( \",\" ( test | star_expr ) ) * [ \",\" ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "!augassign : ( \"+=\" | \"-=\" | \"*=\" | \"@=\" | \"/=\" | \"%=\" | \"&=\" | \"|=\" | \"^=\" | \"<<=\" | \">>=\" | \"**=\" | \"//=\" ) \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "del_stmt : \"del\" exprlist \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "pass_stmt : \"pass\" \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "flow_stmt : break_stmt | continue_stmt | return_stmt | raise_stmt | yield_stmt \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "break_stmt : \"break\" \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "continue_stmt : \"continue\" \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "return_stmt : \"return\" [ testlist ] \n",
+      "ਅਨੁ": "return_stmt : \"واپس\" [ testlist ] \n",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "yield_stmt : yield_expr \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "raise_stmt : \"raise\" [ test [ \"from\" test ] ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "import_stmt : import_name | import_from \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "import_name : \"import\" dotted_as_names \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "import_from : \"from\" ( dots ? dotted_name | dots ) \"import\" ( \"*\" | \"(\" import_as_names \")\" | import_as_names ) \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "!dots : \".\" + \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "import_as_name : NAME [ \"as\" NAME ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "dotted_as_name : dotted_name [ \"as\" NAME ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "!import_as_names : import_as_name ( \",\" import_as_name ) * [ \",\" ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "dotted_as_names : dotted_as_name ( \",\" dotted_as_name ) * \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "dotted_name : NAME ( \".\" NAME ) * \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "global_stmt : \"global\" NAME ( \",\" NAME ) * \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "nonlocal_stmt : \"nonlocal\" NAME ( \",\" NAME ) * \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "assert_stmt : \"assert\" test [ \",\" test ] \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "compound_stmt : if_stmt | while_stmt | for_stmt | try_stmt | with_stmt | funcdef | classdef | decorated | async_stmt \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "async_stmt : \"async\" ( funcdef | with_stmt | for_stmt ) \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "if_stmt : \"if\" test \":\" suite ( \"elif\" test \":\" suite ) * [ \"else\" \":\" suite ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "while_stmt : \"while\" test \":\" suite [ \"else\" \":\" suite ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "for_stmt : \"for\" exprlist \"in\" testlist \":\" suite [ \"else\" \":\" suite ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "try_stmt : ( \"try\" \":\" suite ( ( except_clause \":\" suite ) + [ \"else\" \":\" suite ] [ \"finally\" \":\" suite ] | \"finally\" \":\" suite ) ) \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "with_stmt : \"with\" with_item ( \",\" with_item ) * \":\" suite \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "with_item : test [ \"as\" expr ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "except_clause : \"except\" [ test [ \"as\" NAME ] ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "suite : simple_stmt | NEWLINE INDENT stmt + DEDENT \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?test : or_test [ \"if\" or_test \"else\" test ] | lambdef \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?test_nocond : or_test | lambdef_nocond \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "lambdef : \"lambda\" [ varargslist ] \":\" test \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "lambdef_nocond : \"lambda\" [ varargslist ] \":\" test_nocond \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?or_test : and_test ( \"or\" and_test ) * \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?and_test : not_test ( \"and\" not_test ) * \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?not_test : \"not\" not_test -> not \n         | comparison \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?comparison : expr ( _comp_op expr ) * \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "star_expr : \"*\" expr \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?expr : xor_expr ( \"|\" xor_expr ) * \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?xor_expr : and_expr ( \"^\" and_expr ) * \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?and_expr : shift_expr ( \"&\" shift_expr ) * \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?shift_expr : arith_expr ( _shift_op arith_expr ) * \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?arith_expr : term ( _add_op term ) * \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?term : factor ( _mul_op factor ) * \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?factor : _factor_op factor | power \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "!_factor_op : \"+\" | \"-\" | \"~\" \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "!_add_op : \"+\" | \"-\" \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "!_shift_op : \"<<\" | \">>\" \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "!_mul_op : \"*\" | \"@\" | \"/\" | \"%\" | \"//\" \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "!_comp_op : \"<\" | \">\" | \"==\" | \">=\" | \"<=\" | \"<>\" | \"!=\" | \"in\" | \"not\" \"in\" | \"is\" | \"is\" \"not\" \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?power : await_expr [ \"**\" factor ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "await_expr : AWAIT ? atom_expr \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "AWAIT : \"await\" \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?atom_expr : atom_expr \"(\" [ arguments ] \")\" -> funccall \n          | atom_expr \"[\" subscriptlist \"]\" -> getitem \n          | atom_expr \".\" NAME -> getattr \n          | atom \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?atom : \"(\" [ yield_expr | testlist_comp ] \")\" -> tuple \n     | \"[\" [ testlist_comp ] \"]\" -> list \n     | \"{\" [ dictorsetmaker ] \"}\" -> dict \n     | NAME -> var \n     | number | string + \n     | \"(\" test \")\" \n     | \"...\" -> ellipsis \n     | \"None\" -> const_none \n     | \"True\" -> const_true \n     | \"False\" -> const_false \n\n",
+      "ਅਨੁ": "?atom : \"(\" [ yield_expr | testlist_comp ] \")\" -> tuple \n     | \"[\" [ testlist_comp ] \"]\" -> list \n     | \"{\" [ dictorsetmaker ] \"}\" -> dict \n     | NAME -> var \n     | number | string + \n     | \"(\" test \")\" \n     | \"...\" -> ellipsis \n     | \"کچہنہیں\" -> const_none \n     | \"صحی\" -> const_true \n     | \"جہثا\" -> const_false \n\n",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "!?testlist_comp : ( test | star_expr ) [ comp_for | ( \",\" ( test | star_expr ) ) + [ \",\" ] | \",\" ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "!subscriptlist : subscript ( \",\" subscript ) * [ \",\" ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "subscript : test | [ test ] \":\" [ test ] [ sliceop ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "sliceop : \":\" [ test ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "!exprlist : ( expr | star_expr ) ( \",\" ( expr | star_expr ) ) * [ \",\" ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "!testlist : test ( \",\" test ) * [ \",\" ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "!dictorsetmaker : ( ( ( test \":\" test | \"**\" expr ) ( comp_for | ( \",\" ( test \":\" test | \"**\" expr ) ) * [ \",\" ] ) ) | ( ( test | star_expr ) ( comp_for | ( \",\" ( test | star_expr ) ) * [ \",\" ] ) ) ) \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "classdef : \"class\" NAME [ \"(\" [ arguments ] \")\" ] \":\" suite \n\n",
+      "ਅਨੁ": "classdef : \"مجمہ\" NAME [ \"(\" [ arguments ] \")\" ] \":\" suite \n\n",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "!arguments : argvalue ( \",\" argvalue ) * [ \",\" [ starargs | kwargs ] ] \n         | starargs \n         | kwargs \n         | test comp_for \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "!starargs : \"*\" test ( \",\" \"*\" test ) * ( \",\" argvalue ) * [ \",\" kwargs ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "kwargs : \"**\" test \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "?argvalue : test [ \"=\" test ] \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "comp_iter : comp_for | comp_if | async_for \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "async_for : \"async\" \"for\" exprlist \"in\" or_test [ comp_iter ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "comp_for : \"for\" exprlist \"in\" or_test [ comp_iter ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "comp_if : \"if\" test_nocond [ comp_iter ] \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "encoding_decl : NAME \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "yield_expr : \"yield\" [ yield_arg ] \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "yield_arg : \"from\" test | testlist \n\n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "number : DEC_NUMBER | HEX_NUMBER | OCT_NUMBER | FLOAT_NUMBER | IMAG_NUMBER \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "string : STRING | LONG_STRING \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "NAME : /[a-zA-Z_]\\w*/ \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "COMMENT : /#[^\\n]*/ \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "NEWLINE : ( /\\r?\\n[\\t ]*/ | COMMENT ) + \n\n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "STRING : /[ubf]?r?(\"(?!\"\").*?(?<!\\\\)(\\\\\\\\)*?\"|'(?!'').*?(?<!\\\\)(\\\\\\\\)*?')/i \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "LONG_STRING : /[ubf]?r?(\"\"\".*?(?<!\\\\)(\\\\\\\\)*?\"\"\"|'''.*?(?<!\\\\)(\\\\\\\\)*?''')/is \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "DEC_NUMBER : /0|[1-9]\\d*/i \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "HEX_NUMBER . 2 : /0x[\\da-f]*/i \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "OCT_NUMBER . 2 : /0o[0-7]*/i \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "BIN_NUMBER . 2 : /0b[0-1]*/i \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "FLOAT_NUMBER . 2 : /((\\d+\\.\\d*|\\.\\d+)(e[-+]?\\d+)?|\\d+(e[-+]?\\d+))/i \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "IMAG_NUMBER . 2 : /\\d+j|${FLOAT_NUMBER}j/i \n\n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "%ignore /[\\t \\f]+/ \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "%ignore /\\\\[\\t \\f]*\\r?\\n/ \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "%ignore COMMENT \n",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    },
+    {
+      "ਸਰੋਤ": "%declare INDENT DEDENT ",
+      "ਅਨੁ": "",
+      "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
+    }
+  ],
+  "ਭਾਸ਼ਾ": "ار"
+}
