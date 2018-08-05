@@ -4,6 +4,8 @@ import os
 from lark import Lark, Tree
 from lark.reconstruct import Reconstructor
 
+from ਲੱਸੀ.ਵਿਆਕਰਣ.ਸੰਖਯਾ import ਸੰਖਯਾ_ਅਨੁਵਾਦਵਾਲਾ
+
 
 class ਵਿਆਕਰਣ_ਵਾਧਾ(object):
     ਵਿਆ = NotImplemented
@@ -17,6 +19,8 @@ class ਵਿਆਕਰਣ_ਵਾਧਾ(object):
     doc_src_trads = 'ਵਿਆ_ਅਨੁ/_ਸਰੋਤ.json'
     dir_trads = 'ਵਿਆ_ਅਨੁ'
     dir_comp = 'ਸੰਕਲਿਤ'
+
+    spéciaux = {}
 
     reconstr = {}
     analyseurs = {}
@@ -49,7 +53,7 @@ class ਵਿਆਕਰਣ_ਵਾਧਾ(object):
             with open(os.path.join(ਖੁਦ.dir_trads, l + '.json'), 'w', encoding='UTF-8') as d:
                 json.dump(dic_l, d, ensure_ascii=False, indent=2)
 
-    def ਬਾਅਦ_ਕਾਰਵਾਈ(ਖੁਦ, ਦਸਤ):
+    def ਬਾਅਦ_ਕਾਰਵਾਈ(ਖੁਦ, ਦਸਤ, ਭਾਸ਼ਾ):
         return ਦਸਤ
 
     def créer_arbre(ਖੁਦ, c, langue=None):
@@ -58,7 +62,12 @@ class ਵਿਆਕਰਣ_ਵਾਧਾ(object):
 
     def reconstre_code(ਖੁਦ, arbre, langue):
         reconstr = ਖੁਦ.obt_reconstr(langue)
-        return ਖੁਦ.ਬਾਅਦ_ਕਾਰਵਾਈ(reconstr.reconstruct(arbre, **ਖੁਦ.ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ))
+        ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ = ਖੁਦ.ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ
+        if 'postproc' not in ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ:
+            ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ['postproc'] = None
+        if 'ENT' in ਖੁਦ.spéciaux:
+            ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ['postproc'] = ਸੰਖਯਾ_ਅਨੁਵਾਦਵਾਲਾ(langue,  ਖੁਦ.spéciaux['ENT'], ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ['postproc'])
+        return ਖੁਦ.ਬਾਅਦ_ਕਾਰਵਾਈ(reconstr.reconstruct(arbre, **ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ), langue)
 
     def obt_doc_trad_gram(ਖੁਦ, langue):
         if langue == ਖੁਦ.ਸਰੋਤ_ਭਾ:
@@ -85,14 +94,14 @@ class ਵਿਆਕਰਣ_ਵਾਧਾ(object):
         return ਖੁਦ.reconstr[langue]
 
     def obt_ext(ਖੁਦ, langue):
-        with open(os.path.join(ਖੁਦ.dir_trads, langue + '.json')) as d:
+        with open(os.path.join(ਖੁਦ.dir_trads, langue + '.json'), encoding='UTF-8') as d:
             ਵਾਧਾ = json.load(d)['ਵਾਧਾ']
         return ਵਾਧਾ
 
     def langue_de_ext(ਖੁਦ, ext):
         for f in ਖੁਦ.dir_trads:
             if os.path.split(f)[1] != ਖੁਦ.doc_src_trads:
-                with open(f) as d:
+                with open(f, encoding='UTF-8') as d:
                     dic = json.load(d)
                 if dic['ਵਾਧਾ'] == ext:
                     return dic['ਭਾਸ਼ਾ']

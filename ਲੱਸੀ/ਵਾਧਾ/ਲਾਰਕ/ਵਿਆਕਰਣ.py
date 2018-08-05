@@ -1,6 +1,6 @@
 import os
 
-from ਲੱਸੀ.TradGrammaire.ਭਾਸ਼ਾ import ਵਿਆਕਰਣ_ਵਾਧਾ
+from ਲੱਸੀ.ਵਿਆਕਰਣ.ਭਾਸ਼ਾ import ਵਿਆਕਰਣ_ਵਾਧਾ
 
 
 def ਮੁੜ_ਉਸਾਰੀ_ਬਾਅਦ_ਕਾਰ(ਪਾਠ):

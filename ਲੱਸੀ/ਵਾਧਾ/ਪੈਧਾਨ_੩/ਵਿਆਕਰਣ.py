@@ -1,9 +1,13 @@
 import os
 
-import black
+try:
+    import black
+except ImportError:
+    black = None
 
 from lark.indenter import Indenter
-from ਲੱਸੀ.TradGrammaire.ਭਾਸ਼ਾ import ਵਿਆਕਰਣ_ਵਾਧਾ
+
+from ਲੱਸੀ.ਵਿਆਕਰਣ.ਭਾਸ਼ਾ import ਵਿਆਕਰਣ_ਵਾਧਾ
 
 
 class PythonIndenter(Indenter):
@@ -27,13 +31,17 @@ class ਪੈਧਾਨ_੩_ਵਿਆ(ਵਿਆਕਰਣ_ਵਾਧਾ):
     ਸਰੋਤ_ਭਾ = 'en'
 
     dir = os.path.split(__file__)[0]
-
     ਸ਼ਬਦ_ਵਿਸ਼_ਬਦਲ = dict(rel_to=__file__, postlex=PythonIndenter(), start='file_input', parser='lalr')
-
     ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ = dict(postproc=ਮੁੜ_ਉਸਾਰੀ_ਬਾਅਦ_ਕਾਰ)
 
-    #def ਬਾਅਦ_ਕਾਰਵਾਈ(ਖੁਦ, ਦਸਤ):
-    #    return black.format_file_contents(ਦਸਤ, line_length=120, fast=True)
+    spéciaux = {'ENT': 'DEC_NUMBER',
+                'ਨਾਮ': 'NAME'}
+
+    def ਬਾਅਦ_ਕਾਰਵਾਈ(ਖੁਦ, ਦਸਤ, ਭਾਸ਼ਾ):
+        if ਭਾਸ਼ਾ == 'en' and black is not None:
+            return black.format_file_contents(ਦਸਤ, line_length=120, fast=True)
+        else:
+            return ਦਸਤ
 
 
 if __name__ == '__main__':

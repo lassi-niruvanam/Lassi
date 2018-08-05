@@ -7,7 +7,7 @@ decorators : decorator +
 decorated : decorators ( classdef | funcdef | async_funcdef ) 
 
 async_funcdef : "async" funcdef 
-funcdef : "déf" NAME "(" parameters ? ")" [ "->" test ] ":" suite 
+funcdef : "def" NAME "(" parameters ? ")" [ "->" test ] ":" suite 
 
 !parameters : paramvalue ( "," paramvalue ) * [ "," [ starparams | kwparams ] ] 
           | starparams 
@@ -33,11 +33,11 @@ annassign : ":" test [ "=" test ]
 !?testlist_star_expr : ( test | star_expr ) ( "," ( test | star_expr ) ) * [ "," ] 
 !augassign : ( "+=" | "-=" | "*=" | "@=" | "/=" | "%=" | "&=" | "|=" | "^=" | "<<=" | ">>=" | "**=" | "//=" ) 
 del_stmt : "del" exprlist 
-pass_stmt : "passe" 
+pass_stmt : "taqax" 
 flow_stmt : break_stmt | continue_stmt | return_stmt | raise_stmt | yield_stmt 
 break_stmt : "break" 
 continue_stmt : "continue" 
-return_stmt : "retourne" [ testlist ] 
+return_stmt : "return" [ testlist ] 
 yield_stmt : yield_expr 
 raise_stmt : "raise" [ test [ "from" test ] ] 
 import_stmt : import_name | import_from 
@@ -55,23 +55,23 @@ assert_stmt : "assert" test [ "," test ]
 
 compound_stmt : if_stmt | while_stmt | for_stmt | try_stmt | with_stmt | funcdef | classdef | decorated | async_stmt 
 async_stmt : "async" ( funcdef | with_stmt | for_stmt ) 
-if_stmt : "si" test ":" suite ( "sinonsi" test ":" suite ) * [ "sinon" ":" suite ] 
-while_stmt : "lorsque" test ":" suite [ "sinon" ":" suite ] 
-for_stmt : "pour" exprlist "dans" testlist ":" suite [ "sinon" ":" suite ] 
-try_stmt : ( "essayer" ":" suite ( ( except_clause ":" suite ) + [ "sinon" ":" suite ] [ "finalement" ":" suite ] | "finalement" ":" suite ) ) 
-with_stmt : "avec" with_item ( "," with_item ) * ":" suite 
-with_item : test [ "comme" expr ] 
-except_clause : "sauf" [ test [ "as" NAME ] ] 
+if_stmt : "we" test ":" suite ( "wemanwe" test ":" suite ) * [ "wemanaq" ":" suite ] 
+while_stmt : "toq" test ":" suite [ "kisbäl" ":" suite ] 
+for_stmt : "roma" exprlist "pa" testlist ":" suite [ "kisbäl" ":" suite ] 
+try_stmt : ( "tatzu" ":" suite ( ( except_clause ":" suite ) + [ "wemanaq" ":" suite ] [ "kisbäl" ":" suite ] | "kisbäl" ":" suite ) ) 
+with_stmt : "rikin" with_item ( "," with_item ) * ":" suite 
+with_item : test [ "achiel" expr ] 
+except_clause : "except" [ test [ "as" NAME ] ] 
 suite : simple_stmt | NEWLINE INDENT stmt + DEDENT 
 
-?test : or_test [ "si" or_test "sinon" test ] | lambdef 
+?test : or_test [ "we" or_test "wemanaq" test ] | lambdef 
 ?test_nocond : or_test | lambdef_nocond 
 lambdef : "lambda" [ varargslist ] ":" test 
 lambdef_nocond : "lambda" [ varargslist ] ":" test_nocond 
-?or_test : and_test ( "ou" and_test ) * 
-?and_test : not_test ( "et" not_test ) * 
+?or_test : and_test ( "or" and_test ) * 
+?and_test : not_test ( "and" not_test ) * 
 
-?not_test : "pas" not_test -> not 
+?not_test : "manaq" not_test -> not 
          | comparison 
 ?comparison : expr ( _comp_op expr ) * 
 star_expr : "*" expr 
@@ -87,7 +87,7 @@ star_expr : "*" expr
 !_add_op : "+" | "-" 
 !_shift_op : "<<" | ">>" 
 !_mul_op : "*" | "@" | "/" | "%" | "//" 
-!_comp_op : "<" | ">" | "==" | ">=" | "<=" | "<>" | "!=" | "dans" | "pas" "dans" | "est" | "nest" "pas" 
+!_comp_op : "<" | ">" | "==" | ">=" | "<=" | "<>" | "!=" | "in" | "not" "in" | "is" | "is" "not" 
 
 ?power : await_expr [ "**" factor ] 
 await_expr : AWAIT ? atom_expr 
@@ -105,9 +105,9 @@ AWAIT : "await"
      | number | string + 
      | "(" test ")" 
      | "..." -> ellipsis 
-     | "Aucun" -> const_none 
-     | "Vrai" -> const_true 
-     | "Faux" -> const_false 
+     | "Majun" -> const_none 
+     | "Qitzij" -> const_true 
+     | "Nimay" -> const_false 
 
 !?testlist_comp : ( test | star_expr ) [ comp_for | ( "," ( test | star_expr ) ) + [ "," ] | "," ] 
 !subscriptlist : subscript ( "," subscript ) * [ "," ] 
@@ -117,7 +117,7 @@ sliceop : ":" [ test ]
 !testlist : test ( "," test ) * [ "," ] 
 !dictorsetmaker : ( ( ( test ":" test | "**" expr ) ( comp_for | ( "," ( test ":" test | "**" expr ) ) * [ "," ] ) ) | ( ( test | star_expr ) ( comp_for | ( "," ( test | star_expr ) ) * [ "," ] ) ) ) 
 
-classdef : "classe" NAME [ "(" [ arguments ] ")" ] ":" suite 
+classdef : "class" NAME [ "(" [ arguments ] ")" ] ":" suite 
 
 !arguments : argvalue ( "," argvalue ) * [ "," [ starargs | kwargs ] ] 
          | starargs 
@@ -130,9 +130,9 @@ kwargs : "**" test
 ?argvalue : test [ "=" test ] 
 
 comp_iter : comp_for | comp_if | async_for 
-async_for : "async" "pour" exprlist "dans" or_test [ comp_iter ] 
-comp_for : "pour" exprlist "dans" or_test [ comp_iter ] 
-comp_if : "si" test_nocond [ comp_iter ] 
+async_for : "async" "for" exprlist "in" or_test [ comp_iter ] 
+comp_for : "for" exprlist "in" or_test [ comp_iter ] 
+comp_if : "we" test_nocond [ comp_iter ] 
 
 encoding_decl : NAME 
 

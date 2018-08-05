@@ -10,21 +10,21 @@ with open(os.path.join(ਰਾਸ੍ਤਾ, 'ਲੱਸੀ', 'ਸੰਸਕਰਣ.t
 setup(
     name='lassi',
     version=ਸੰਸਕਰਣ,
-    packages=find_packages('ਲੱਸੀ'),
+    packages=find_packages('/ਲੱਸੀ'),
     url='https://lassi.readthedocs.io',
     download_url='https://github.com/julienmalard/Lassi',
     license='GNU GPL 3',
-    author='Julien Malard',
+    author='ਜ਼ੂਲੀਏਂ ਮਲਾਰ (Julien Malard)',
     author_email='julien.malard@mail.mcgill.ca',
-    description='ਕੂਟਨ ਦੀ ਅਨੁਵਾਦ।',
+    description='ਸੰਕੇਤ ਦੀ ਅਨੁਵਾਦ।',
     long_description='',
     classifiers=[
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7'
     ],
+    install_requires=['lark-parser', 'ennikkai'],
     package_data={
-
-        '': ['*.txt', '*.json'],
-    }
+        '': ['*.txt', '*.json', '*.lark'],
+    },
 )

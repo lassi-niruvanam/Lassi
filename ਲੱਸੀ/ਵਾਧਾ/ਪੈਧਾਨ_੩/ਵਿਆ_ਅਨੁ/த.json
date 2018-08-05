@@ -39,7 +39,7 @@
     },
     {
       "ਸਰੋਤ": "funcdef : \"def\" NAME \"(\" parameters ? \")\" [ \"->\" test ] \":\" suite \n\n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "funcdef : \"வரையறு\" NAME \"(\" parameters ? \")\" [ \"->\" test ] \":\" suite \n\n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
@@ -119,7 +119,7 @@
     },
     {
       "ਸਰੋਤ": "pass_stmt : \"pass\" \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "pass_stmt : \"விடு\" \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
@@ -129,17 +129,17 @@
     },
     {
       "ਸਰੋਤ": "break_stmt : \"break\" \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "break_stmt : \"வெளியேறு\" \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
       "ਸਰੋਤ": "continue_stmt : \"continue\" \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "continue_stmt : \"தொடரவும்\" \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
       "ਸਰੋਤ": "return_stmt : \"return\" [ testlist ] \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "return_stmt : \"திரும்ப\" [ testlist ] \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
@@ -149,7 +149,7 @@
     },
     {
       "ਸਰੋਤ": "raise_stmt : \"raise\" [ test [ \"from\" test ] ] \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "raise_stmt : \"எழுப்பும்\" [ test [ \"from\" test ] ] \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
@@ -224,37 +224,37 @@
     },
     {
       "ਸਰੋਤ": "if_stmt : \"if\" test \":\" suite ( \"elif\" test \":\" suite ) * [ \"else\" \":\" suite ] \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "if_stmt : test \"என்றால்\" \":\" suite ( \"elif\" test \":\" suite ) * [ \"இல்லையெனில்\" \":\" suite ] \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
       "ਸਰੋਤ": "while_stmt : \"while\" test \":\" suite [ \"else\" \":\" suite ] \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "while_stmt : test \"பொழுது\" \":\" suite [ \"இல்லையெனில்\" \":\" suite ] \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
       "ਸਰੋਤ": "for_stmt : \"for\" exprlist \"in\" testlist \":\" suite [ \"else\" \":\" suite ] \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "for_stmt : \"for\" exprlist \"in\" testlist \":\" suite [ \"இல்லையெனில்\" \":\" suite ] \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
       "ਸਰੋਤ": "try_stmt : ( \"try\" \":\" suite ( ( except_clause \":\" suite ) + [ \"else\" \":\" suite ] [ \"finally\" \":\" suite ] | \"finally\" \":\" suite ) ) \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "try_stmt : ( \"முயற்சிக்கவும்\" \":\" suite ( ( except_clause \":\" suite ) + [ \"இல்லையெனில்\" \":\" suite ] [ \"கடைசியில்\" \":\" suite ] | \"கடைசியில்\" \":\" suite ) ) \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
       "ਸਰੋਤ": "with_stmt : \"with\" with_item ( \",\" with_item ) * \":\" suite \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "with_stmt : with_item ( \",\" with_item ) * \"இதுடன்\" \":\" suite \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
-      "ਸਰੋਤ": "with_item : test [ \"as\" expr ] \n",
-      "ਅਨੁ": "",
+      "ਸਰੋਤ": "with_item : test [ expr \"as\" ] \n",
+      "ਅਨੁ": "with_item : test [ \"வடிவில்\" expr ] \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
       "ਸਰੋਤ": "except_clause : \"except\" [ test [ \"as\" NAME ] ] \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "except_clause : [ test [ \"as\" NAME ] ] \"தவிர்\" \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
@@ -264,7 +264,7 @@
     },
     {
       "ਸਰੋਤ": "?test : or_test [ \"if\" or_test \"else\" test ] | lambdef \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "?test : or_test [ or_test \"என்றால்\" \"இல்லையெனில்\" test ] | lambdef \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
@@ -274,27 +274,27 @@
     },
     {
       "ਸਰੋਤ": "lambdef : \"lambda\" [ varargslist ] \":\" test \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "lambdef : \"லாம்டா\" [ varargslist ] \":\" test \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
       "ਸਰੋਤ": "lambdef_nocond : \"lambda\" [ varargslist ] \":\" test_nocond \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "lambdef_nocond : \"லாம்டா\" [ varargslist ] \":\" test_nocond \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
       "ਸਰੋਤ": "?or_test : and_test ( \"or\" and_test ) * \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "?or_test : and_test ( \"அல்லது\" and_test ) * \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
       "ਸਰੋਤ": "?and_test : not_test ( \"and\" not_test ) * \n\n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "?and_test : not_test ( \"மற்றும்\" not_test ) * \n\n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
       "ਸਰੋਤ": "?not_test : \"not\" not_test -> not \n         | comparison \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "?not_test : not_test  \"இல்லை\"-> not \n         | comparison \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
@@ -389,7 +389,7 @@
     },
     {
       "ਸਰੋਤ": "?atom : \"(\" [ yield_expr | testlist_comp ] \")\" -> tuple \n     | \"[\" [ testlist_comp ] \"]\" -> list \n     | \"{\" [ dictorsetmaker ] \"}\" -> dict \n     | NAME -> var \n     | number | string + \n     | \"(\" test \")\" \n     | \"...\" -> ellipsis \n     | \"None\" -> const_none \n     | \"True\" -> const_true \n     | \"False\" -> const_false \n\n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "?atom : \"(\" [ yield_expr | testlist_comp ] \")\" -> tuple \n     | \"[\" [ testlist_comp ] \"]\" -> list \n     | \"{\" [ dictorsetmaker ] \"}\" -> dict \n     | NAME -> var \n     | number | string + \n     | \"(\" test \")\" \n     | \"...\" -> ellipsis \n     | \"None\" -> const_none \n     | \"உண்மை\" -> const_true \n     | \"தவறாக\" -> const_false \n\n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
@@ -429,7 +429,7 @@
     },
     {
       "ਸਰੋਤ": "classdef : \"class\" NAME [ \"(\" [ arguments ] \")\" ] \":\" suite \n\n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "classdef : \"வகை\" NAME [ \"(\" [ arguments ] \")\" ] \":\" suite \n\n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
@@ -464,12 +464,12 @@
     },
     {
       "ਸਰੋਤ": "comp_for : \"for\" exprlist \"in\" or_test [ comp_iter ] \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "comp_for : \"உக்கு\" exprlist \"இல்\" or_test [ comp_iter ] \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
       "ਸਰੋਤ": "comp_if : \"if\" test_nocond [ comp_iter ] \n\n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "comp_if : test_nocond \"என்றால்\" [ comp_iter ] \n\n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {

@@ -1,6 +1,6 @@
 import pprint
 
-from ਲੱਸੀ.TradGrammaire.ਭਾਸ਼ਾ import ਵਿਆਕਰਣ_ਵਾਧਾ
+from ਲੱਸੀ.ਵਿਆਕਰਣ.ਭਾਸ਼ਾ import ਵਿਆਕਰਣ_ਵਾਧਾ
 
 
 class GrammaireJSON(ਵਿਆਕਰਣ_ਵਾਧਾ):

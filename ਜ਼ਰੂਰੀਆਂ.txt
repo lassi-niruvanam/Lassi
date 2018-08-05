@@ -1,0 +1,2 @@
+git+git://github.com/julienmalard/lark.git@master
+git+git://github.com/julienmalard/ennikkai.git@master
