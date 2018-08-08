@@ -1,4 +1,4 @@
-from எண்ணிக்கை import உரைக்கு, regex
+from எண்ணிக்கை import உரைக்கு, வழவெளி
 
 
 class ਸੰਖਯਾ_ਅਨੁਵਾਦਵਾਲਾ(object):
@@ -8,7 +8,7 @@ class ਸੰਖਯਾ_ਅਨੁਵਾਦਵਾਲਾ(object):
         ਖੁਦ.autre = autre if autre is not None else (lambda x: x)
 
     def regexp(ਖੁਦ):
-        return regex(ਖੁਦ.ਭਾਸ਼ਾ)
+        return வழவெளி(ਖੁਦ.ਭਾਸ਼ਾ)
 
     def __call__(ਖੁਦ, ਪਾਠ):
         for x in ਖੁਦ.autre(ਖੁਦ.proc(ਪਾਠ)):
@@ -23,4 +23,7 @@ class ਸੰਖਯਾ_ਅਨੁਵਾਦਵਾਲਾ(object):
 
 
 def traduire(x, ਭਾਸ਼ਾ):
-    return உரைக்கு(x, ਭਾਸ਼ਾ)
+    try:
+        return உரைக்கு(str(x), ਭਾਸ਼ਾ)
+    except ValueError:
+        return str(x)

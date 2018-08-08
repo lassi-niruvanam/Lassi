@@ -3,7 +3,6 @@ import os
 
 from lark import Lark, Tree
 from lark.reconstruct import Reconstructor
-
 from ਲੱਸੀ.ਵਿਆਕਰਣ.ਸੰਖਯਾ import ਸੰਖਯਾ_ਅਨੁਵਾਦਵਾਲਾ
 
 
@@ -11,115 +10,144 @@ class ਵਿਆਕਰਣ_ਵਾਧਾ(object):
     ਵਿਆ = NotImplemented
     ਵਾਧਾ = NotImplemented
     ਸਰੋਤ_ਭਾ = NotImplemented
-    dir = NotImplemented
+    ਰਾਸਤਾ = NotImplemented
 
     ਸ਼ਬਦ_ਵਿਸ਼_ਬਦਲ = {'parser': 'lalr'}
     ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ = {}
 
-    doc_src_trads = 'ਵਿਆ_ਅਨੁ/_ਸਰੋਤ.json'
-    dir_trads = 'ਵਿਆ_ਅਨੁ'
-    dir_comp = 'ਸੰਕਲਿਤ'
+    ਦਸਤ_ਸਰੋਤ_ਅਨੁ = 'ਵਿਆ_ਅਨੁ/_ਸਰੋਤ.json'
+    ਅਨੂ_ਰਾਸਤਾ = 'ਵਿਆ_ਅਨੁ'
 
+    _ਮੁੜ_ਉਸਾਰੀ = {}
+    _ਵਿਸ਼ਲੇਸ਼ਣ = {}
     spéciaux = {}
 
-    reconstr = {}
-    analyseurs = {}
-
-    def gén_arch_trads(ਥੁਦ):
+    def ਦਸਤ_ਸਰੋਤ_ਅਨੁ_ਬੲਾਉ(ਥੁਦ):
         from ..ਵਾਧਾ.ਲਾਰਕ.ਵਿਆਕਰਣ import ਲਾਰਕ_ਵਿਆਕਰਣ
-        with open(ਥੁਦ.ਵਿਆ, encoding='UTF-8') as ਦ:
-            g = ਦ.read()
-        ਰੁੱਖ = ਲਾਰਕ_ਵਿਆਕਰਣ().créer_arbre(g, langue='en')
+        ਵਿਆ = ਥੁਦ._ਦਸਤਾਵੇਜ਼_ਖੋਲ੍ਹਨਾ(ਥੁਦ.ਵਿਆ)
+        ਰੁੱਖ = ਲਾਰਕ_ਵਿਆਕਰਣ().ਰੁੱਖ_ਬਣਾਉ(ਵਿਆ, ਭਾਸ਼ਾ='en')
 
         ਅਨੁ_ਕੋਸ਼ = {
             'ਵਾਧਾ': ਥੁਦ.ਵਾਧਾ,
             'ਸਰੋਤ_ਭਾ': ਥੁਦ.ਸਰੋਤ_ਭਾ,
             'ਨਿਯਮ': [
-                {'ਸਰੋਤ': ਲਾਰਕ_ਵਿਆਕਰਣ().reconstre_code(ਅ, ਥੁਦ.ਸਰੋਤ_ਭਾ), 'ਅਨੁ': '', 'ਰੁਤਬਾ': 'ਕਰਨੀ ਹੈ'}
+                {'ਸਰੋਤ': ਲਾਰਕ_ਵਿਆਕਰਣ().ਸੰਕੇਤ_ਮੁੜ_ਉਸਾਰੀ(ਅ, ਥੁਦ.ਸਰੋਤ_ਭਾ), 'ਅਨੁ': '', 'ਰੁਤਬਾ': 'ਕਰਨੀ ਹੈ'}
                 for ਅ in ਰੁੱਖ.children if isinstance(ਅ, Tree)
             ]
         }
 
-        if not os.path.isdir(os.path.dirname(ਥੁਦ.doc_src_trads)):
-            os.makedirs(os.path.dirname(ਥੁਦ.doc_src_trads))
-        with open(ਥੁਦ.doc_src_trads, mode='w', encoding='UTF-8') as ਦ:
-            json.dump(ਅਨੁ_ਕੋਸ਼, ਦ, ensure_ascii=False, indent=2)
+        if not os.path.isdir(os.path.dirname(ਥੁਦ.ਦਸਤ_ਸਰੋਤ_ਅਨੁ)):
+            os.makedirs(os.path.dirname(ਥੁਦ.ਦਸਤ_ਸਰੋਤ_ਅਨੁ))
+        ਥੁਦ._ਦਸਤਾਵੇਜ਼_ਲਿਖਣਾ(ਥੁਦ.ਦਸਤ_ਸਰੋਤ_ਅਨੁ, ਅਨੁ_ਕੋਸ਼)
 
-    def gén_trads(ਖੁਦ, langues):
-        with open(ਖੁਦ.doc_src_trads, 'r', encoding='UTF-8') as d:
-            dic_l = json.load(d)
-        for l in langues:
-            dic_l['ਭਾਸ਼ਾ'] = l
-            with open(os.path.join(ਖੁਦ.dir_trads, l + '.json'), 'w', encoding='UTF-8') as d:
-                json.dump(dic_l, d, ensure_ascii=False, indent=2)
+    def ਦਸਤ_ਅਨੁ_ਵਿਆ_ਬੲਾਉ(ਖੁਦ, ਭਾਸ਼ਾਵਾਂ):
+        ਙਾਸ਼ਾ_ਕੋਸ਼ = ਖੁਦ._ਦਸਤਾਵੇਜ਼_ਖੋਲ੍ਹਨਾ(ਖੁਦ.ਦਸਤ_ਸਰੋਤ_ਅਨੁ)
+        for ਭਾ in ਭਾਸ਼ਾਵਾਂ:
+            ਙਾਸ਼ਾ_ਕੋਸ਼['ਭਾਸ਼ਾ'] = ਭਾ
+            ਖੁਦ._ਦਸਤਾਵੇਜ਼_ਲਿਖਣਾ([ਖੁਦ.ਅਨੂ_ਰਾਸਤਾ, ਭਾ + '.json'], ਙਾਸ਼ਾ_ਕੋਸ਼)
 
     def ਬਾਅਦ_ਕਾਰਵਾਈ(ਖੁਦ, ਦਸਤ, ਭਾਸ਼ਾ):
         return ਦਸਤ
 
-    def créer_arbre(ਖੁਦ, c, langue=None):
-        analyseur = ਖੁਦ.obt_analyseur(langue)
-        return analyseur.parse(c)
+    def ਰੁੱਖ_ਬਣਾਉ(ਖੁਦ, ਸੰ, ਭਾਸ਼ਾ=None):
+        ਵਿਸ਼ਲੇਸ਼ਣ = ਖੁਦ.ਵਿਸ਼ਲੇਸ਼ਣ_ਪ੍ਰਾਪਤ_ਕਰਨਾ(ਭਾਸ਼ਾ)
+        return ਵਿਸ਼ਲੇਸ਼ਣ.parse(ਸੰ)
 
-    def reconstre_code(ਖੁਦ, arbre, langue):
-        reconstr = ਖੁਦ.obt_reconstr(langue)
-        ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ = ਖੁਦ.ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ
-        if 'postproc' not in ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ:
-            ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ['postproc'] = None
+    def ਸੰਕੇਤ_ਮੁੜ_ਉਸਾਰੀ(ਖੁਦ, ਰੁੱਖ, ਭਾਸ਼ਾ):
+        ਮੁੜ_ਉਸਾਰੀ = ਖੁਦ.ਪ੍ਮੁੜ_ਉਸਾਰੀ_ਪ੍ਰਾਪਤ_ਕਰਨਾ(ਭਾਸ਼ਾ)
+        if 'postproc' not in ਖੁਦ.ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ:
+            ਖੁਦ.ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ['postproc'] = None
         if 'ENT' in ਖੁਦ.spéciaux:
-            ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ['postproc'] = ਸੰਖਯਾ_ਅਨੁਵਾਦਵਾਲਾ(langue,  ਖੁਦ.spéciaux['ENT'], ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ['postproc'])
-        return ਖੁਦ.ਬਾਅਦ_ਕਾਰਵਾਈ(reconstr.reconstruct(arbre, **ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ), langue)
+            ਖੁਦ.ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ['postproc'] = ਸੰਖਯਾ_ਅਨੁਵਾਦਵਾਲਾ(ਭਾਸ਼ਾ, ਖੁਦ.spéciaux['ENT'], ਖੁਦ.ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ['postproc'])
+        if 'DEC' in ਖੁਦ.spéciaux:
+            ਖੁਦ.ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ['postproc'] = ਸੰਖਯਾ_ਅਨੁਵਾਦਵਾਲਾ(ਭਾਸ਼ਾ, ਖੁਦ.spéciaux['DEC'], ਖੁਦ.ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ['postproc'])
+        return ਖੁਦ.ਬਾਅਦ_ਕਾਰਵਾਈ(ਮੁੜ_ਉਸਾਰੀ.reconstruct(ਰੁੱਖ, **ਖੁਦ.ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ), ਭਾਸ਼ਾ)
 
-    def obt_doc_trad_gram(ਖੁਦ, langue):
-        if langue == ਖੁਦ.ਸਰੋਤ_ਭਾ:
-            return ਖੁਦ.ਵਿਆ
-        with open(os.path.join(ਖੁਦ.dir, ਖੁਦ.dir_trads, langue + '.json'), encoding='UTF-8') as d:
-            spec_gram = json.load(d)
-        if not os.path.isdir(os.path.join(ਖੁਦ.dir, ਖੁਦ.dir_comp)):
-            os.mkdir(os.path.join(ਖੁਦ.dir, ਖੁਦ.dir_comp))
-        with open(os.path.join(ਖੁਦ.dir, ਖੁਦ.dir_comp, langue + '.lark'), 'w', encoding='UTF-8') as d:
-            d.writelines([x['ਅਨੁ'] if len(x['ਅਨੁ']) else x["ਸਰੋਤ"] for x in spec_gram['ਨਿਯਮ']])
-        return os.path.join(ਖੁਦ.dir, ਖੁਦ.dir_comp, langue + '.lark')
+    def ਦਸਤ_ਅਨੁ_ਪ੍ਰਾਪਤ_ਕਰਨਾ(ਖੁਦ, ਭਾਸ਼ਾ):
+        if ਭਾਸ਼ਾ == ਖੁਦ.ਸਰੋਤ_ਭਾ:
+            ਰਾਸਤਾ = ਖੁਦ.ਦਸਤ_ਸਰੋਤ_ਅਨੁ
+        else:
+            ਰਾਸਤਾ = [ਖੁਦ.ਅਨੂ_ਰਾਸਤਾ, ਭਾਸ਼ਾ + '.json']
+        ਕੋਸ਼_ਵਿਆ = ਖੁਦ._ਦਸਤਾਵੇਜ਼_ਖੋਲ੍ਹਨਾ(ਰਾਸਤਾ, ਜੇਸਾਨ_ਤੋਂ = True)  # type: dict
 
-    def obt_analyseur(ਖੁਦ, langue):
+        return ''.join([x['ਅਨੁ'] if len(x['ਅਨੁ']) else x["ਸਰੋਤ"] for x in ਕੋਸ਼_ਵਿਆ['ਨਿਯਮ']])
 
-        if langue not in ਖੁਦ.analyseurs:
-            ਖੁਦ.analyseurs[langue] = Lark.open(ਖੁਦ.obt_doc_trad_gram(langue), **ਖੁਦ.ਸ਼ਬਦ_ਵਿਸ਼_ਬਦਲ)
+    def ਵਿਸ਼ਲੇਸ਼ਣ_ਪ੍ਰਾਪਤ_ਕਰਨਾ(ਖੁਦ, ਭਾਸ਼ਾ):
 
-        return ਖੁਦ.analyseurs[langue]
+        if ਭਾਸ਼ਾ not in ਖੁਦ._ਵਿਸ਼ਲੇਸ਼ਣ:
+            ਖੁਦ._ਵਿਸ਼ਲੇਸ਼ਣ[ਭਾਸ਼ਾ] = Lark(ਖੁਦ.ਦਸਤ_ਅਨੁ_ਪ੍ਰਾਪਤ_ਕਰਨਾ(ਭਾਸ਼ਾ), **ਖੁਦ.ਸ਼ਬਦ_ਵਿਸ਼_ਬਦਲ)
 
-    def obt_reconstr(ਖੁਦ, langue):
-        if langue not in ਖੁਦ.reconstr:
-            ਖੁਦ.reconstr[langue] = Reconstructor(ਖੁਦ.obt_analyseur(langue))
+        return ਖੁਦ._ਵਿਸ਼ਲੇਸ਼ਣ[ਭਾਸ਼ਾ]
 
-        return ਖੁਦ.reconstr[langue]
+    def ਪ੍ਮੁੜ_ਉਸਾਰੀ_ਪ੍ਰਾਪਤ_ਕਰਨਾ(ਖੁਦ, ਭਾਸ਼ਾ):
+        if ਭਾਸ਼ਾ not in ਖੁਦ._ਮੁੜ_ਉਸਾਰੀ:
+            ਖੁਦ._ਮੁੜ_ਉਸਾਰੀ[ਭਾਸ਼ਾ] = Reconstructor(ਖੁਦ.ਵਿਸ਼ਲੇਸ਼ਣ_ਪ੍ਰਾਪਤ_ਕਰਨਾ(ਭਾਸ਼ਾ))
 
-    def obt_ext(ਖੁਦ, langue):
-        with open(os.path.join(ਖੁਦ.dir_trads, langue + '.json'), encoding='UTF-8') as d:
-            ਵਾਧਾ = json.load(d)['ਵਾਧਾ']
-        return ਵਾਧਾ
+        return ਖੁਦ._ਮੁੜ_ਉਸਾਰੀ[ਭਾਸ਼ਾ]
 
-    def langue_de_ext(ਖੁਦ, ext):
-        for f in ਖੁਦ.dir_trads:
-            if os.path.split(f)[1] != ਖੁਦ.doc_src_trads:
-                with open(f, encoding='UTF-8') as d:
-                    dic = json.load(d)
-                if dic['ਵਾਧਾ'] == ext:
-                    return dic['ਭਾਸ਼ਾ']
+    def ਵਾਧਾ_ਪ੍ਰਾਪਤ_ਕਰਨਾ(ਖੁਦ, ਭਾਸ਼ਾ):
+        return ਖੁਦ._ਦਸਤਾਵੇਜ਼_ਖੋਲ੍ਹਨਾ([ਖੁਦ.ਅਨੂ_ਰਾਸਤਾ, ਭਾਸ਼ਾ + '.json'], ਜੇਸਾਨ_ਤੋਂ=True)['ਵਾਧਾ']
+
+    def ਵਾਧਾ_ਤੋਂ_ਭਾਸ਼ਾ(ਖੁਦ, ਵਾਧਾ):
+        for ਦ in ਖੁਦ.ਅਨੂ_ਰਾਸਤਾ:
+            if os.path.split(ਦ)[1] != ਖੁਦ.ਦਸਤ_ਸਰੋਤ_ਅਨੁ:
+                ਕੋਸ਼ = ਖੁਦ._ਦਸਤਾਵੇਜ਼_ਖੋਲ੍ਹਨਾ(ਦ)
+                if ਕੋਸ਼['ਵਾਧਾ'] == ਵਾਧਾ:
+                    return ਕੋਸ਼['ਭਾਸ਼ਾ']
         raise ValueError
 
-    def traduire_code(ਖੁਦ, c, langue_finale, langue_orig=None):
+    def _ਰਾਸਤਾ_ਰਿਕਾਰਡ_ਬਣਾਉ(ਖੁਦ, ਰਾਸਤਾ):
+        if isinstance(ਰਾਸਤਾ, list):
+            ਰਾਸਤਾ = os.path.join(*ਰਾਸਤਾ)
+        if not len(os.path.splitdrive(ਰਾਸਤਾ)[0]):
+            ਰਾਸਤਾ = os.path.join(ਖੁਦ.ਰਾਸਤਾ, ਰਾਸਤਾ)
 
-        arbre = ਖੁਦ.créer_arbre(c, langue_orig)
-        reconstre = ਖੁਦ.reconstre_code(arbre, langue_finale)
+        return ਰਾਸਤਾ
 
-        return reconstre
+    def _ਦਸਤਾਵੇਜ਼_ਲਿਖਣਾ(ਖੁਦ, ਰਾਸਤਾ, ਵਸਤੂ):
+        ਰਾਸਤਾ = ਖੁਦ._ਰਾਸਤਾ_ਰਿਕਾਰਡ_ਬਣਾਉ(ਰਾਸਤਾ)
+        if not os.path.isdir(os.path.split(ਰਾਸਤਾ)[0]):
+            os.mkdir(os.path.split(ਰਾਸਤਾ)[0])
+        with open(ਰਾਸਤਾ, 'w', encoding='UTF-8') as d:
+            if isinstance(ਵਸਤੂ, dict):
+                json.dump(ਵਸਤੂ, d, ensure_ascii=False, indent=2)
+            elif isinstance(ਵਸਤੂ, list):
+                d.writelines(ਵਸਤੂ)
+            elif isinstance(ਵਸਤੂ, str):
+                d.write(ਵਸਤੂ)
+            else:
+                raise TypeError
 
-    def traduire_document(ਖੁਦ, f, langue=None):
-        with open(f, encoding='UTF-8') as d:
-            c = d.read()
-        if langue is None:
-            langue = ਖੁਦ.langue_de_ext(os.path.splitext(f)[1])
-        t = ਖੁਦ.traduire_code(c, langue)
-        ਵਧਾ = ਖੁਦ.obt_ext(langue)
-        with open(os.path.splitext(f) + ਵਧਾ, 'w', encoding='UTF-8') as d:
-            d.write(t)
+    def _ਦਸਤਾਵੇਜ਼_ਖੋਲ੍ਹਨਾ(ਖੁਦ, ਰਾਸਤਾ, ਜੇਸਾਨ_ਤੋਂ=False):
+        """
+
+        :param ਰਾਸਤਾ:
+        :type ਰਾਸਤਾ:
+        :param ਜੇਸਾਨ_ਤੋਂ:
+        :type ਜੇਸਾਨ_ਤੋਂ:
+        :return:
+        :rtype: str | dict
+        """
+        ਰਾਸਤਾ = ਖੁਦ._ਰਾਸਤਾ_ਰਿਕਾਰਡ_ਬਣਾਉ(ਰਾਸਤਾ)
+        with open(ਰਾਸਤਾ, encoding='UTF-8') as ਦ:
+            if ਜੇਸਾਨ_ਤੋਂ:
+                return json.load(ਦ)
+            else:
+                return ਦ.read()
+
+    def ਸੰਕੇਤ_ਅਨੁਵਾਦ(ਖੁਦ, ਸੰ, ਭਾਸ਼ਾ, ਸਰੋਤ_ਭਾਸ਼ਾ=None):
+
+        ਰੁੱਖ = ਖੁਦ.ਰੁੱਖ_ਬਣਾਉ(ਸੰ, ਸਰੋਤ_ਭਾਸ਼ਾ)
+        ਮੁੜ_ਉਸਾਰੀ = ਖੁਦ.ਸੰਕੇਤ_ਮੁੜ_ਉਸਾਰੀ(ਰੁੱਖ, ਭਾਸ਼ਾ)
+
+        return ਮੁੜ_ਉਸਾਰੀ
+
+    def ਦਸਤਾਵੇਜ਼_ਅਨੁਵਾਦ(ਖੁਦ, f, ਭਾਸ਼ਾ, ਸਰੋਤ_ਭਾਸ਼ਾ=None):
+        ਸੰ = ਖੁਦ._ਦਸਤਾਵੇਜ਼_ਖੋਲ੍ਹਨਾ(f)
+
+        if ਸਰੋਤ_ਭਾਸ਼ਾ is None:
+            ਸਰੋਤ_ਭਾਸ਼ਾ = ਖੁਦ.ਵਾਧਾ_ਤੋਂ_ਭਾਸ਼ਾ(os.path.splitext(f)[1])
+        ਅਨੁ = ਖੁਦ.ਸੰਕੇਤ_ਅਨੁਵਾਦ(ਸੰ, ਭਾਸ਼ਾ, ਸਰੋਤ_ਭਾਸ਼ਾ)
+        ਵਾਧਾ = ਖੁਦ.ਵਾਧਾ_ਪ੍ਰਾਪਤ_ਕਰਨਾ(ਭਾਸ਼ਾ)
+
+        ਖੁਦ._ਦਸਤਾਵੇਜ਼_ਲਿਖਣਾ(os.path.splitext(f)[0] + ਵਾਧਾ, ਅਨੁ)

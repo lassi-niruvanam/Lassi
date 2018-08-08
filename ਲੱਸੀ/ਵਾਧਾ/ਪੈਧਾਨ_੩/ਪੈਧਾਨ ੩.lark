@@ -136,7 +136,7 @@ sliceop: ":" [test]
 !testlist: test ("," test)* [","]
 !dictorsetmaker: ( ((test ":" test | "**" expr) (comp_for | ("," (test ":" test | "**" expr))* [","])) | ((test | star_expr) (comp_for | ("," (test | star_expr))* [","])) )
 
-!classdef: "class" NAME ["(" [arguments] ")"] ":" suite
+classdef: "class" NAME ["(" [arguments] ")"] ":" suite
 !arguments: argvalue ("," argvalue)*  ["," [ starargs | kwargs]]
          | starargs
          | kwargs
@@ -163,7 +163,7 @@ number: DEC_NUMBER | HEX_NUMBER | OCT_NUMBER | FLOAT_NUMBER | IMAG_NUMBER
 string: STRING | LONG_STRING
 // Tokens
 
-NAME: /[a-zA-Z_]/
+NAME: /[a-zA-Z_]\w*/
 COMMENT: /#[^\n]*/
 NEWLINE: ( /\r?\n[\t ]*/ | COMMENT )+
 

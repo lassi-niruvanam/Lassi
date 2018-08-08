@@ -428,8 +428,8 @@
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
-      "ਸਰੋਤ": "classdef : \"classe\" NAME [ \"(\" [ arguments ] \")\" ] \":\" suite \n\n",
-      "ਅਨੁ": "",
+      "ਸਰੋਤ": "classdef : \"class\" NAME [ \"(\" [ arguments ] \")\" ] \":\" suite \n\n",
+      "ਅਨੁ": "classdef : \"classe\" NAME [ \"(\" [ arguments ] \")\" ] \":\" suite \n\n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {

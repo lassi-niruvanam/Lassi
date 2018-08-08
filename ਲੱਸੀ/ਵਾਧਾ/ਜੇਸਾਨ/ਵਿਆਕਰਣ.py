@@ -13,5 +13,5 @@ class GrammaireJSON(ਵਿਆਕਰਣ_ਵਾਧਾ):
 
 if __name__ == '__main__':
     g = GrammaireJSON()
-    g.gén_arch_trads()
-    g.gén_trads(['த', 'ગુ', 'हिं', 'fr', 'kaq'])
+    g.ਦਸਤ_ਸਰੋਤ_ਅਨੁ_ਬੲਾਉ()
+    g.ਦਸਤ_ਅਨੁ_ਵਿਆ_ਬੲਾਉ(['த', 'ગુ', 'हिं', 'fr', 'kaq'])
