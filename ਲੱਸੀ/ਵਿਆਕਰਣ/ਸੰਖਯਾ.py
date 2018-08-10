@@ -1,22 +1,21 @@
+from ਲੱਸੀ.ਵਿਆਕਰਣ.utils import postprocesseur
 from எண்ணிக்கை import உரைக்கு, வழவெளி
 
 
-class ਸੰਖਯਾ_ਅਨੁਵਾਦਵਾਲਾ(object):
-    def __init__(ਖੁਦ, ਭਾਸ਼ਾ, ਨਾਮ, autre=None):
+class ਸੰਖਯਾ_ਅਨੁਵਾਦਵਾਲਾ(postprocesseur):
+    def __init__(ਖੁਦ, ਭਾਸ਼ਾ, ਨਾਮ):
         ਖੁਦ.ਭਾਸ਼ਾ = ਭਾਸ਼ਾ
+        if isinstance(ਨਾਮ, str):
+            ਨਾਮ = [ਨਾਮ]
         ਖੁਦ.ਨਾਮ = ਨਾਮ
-        ਖੁਦ.autre = autre if autre is not None else (lambda x: x)
+        super().__init__()
 
     def regexp(ਖੁਦ):
         return வழவெளி(ਖੁਦ.ਭਾਸ਼ਾ)
 
-    def __call__(ਖੁਦ, ਪਾਠ):
-        for x in ਖੁਦ.autre(ਖੁਦ.proc(ਪਾਠ)):
-            yield x
-
     def proc(ਖੁਦ, ਪਾਠ):
         for x in ਪਾਠ:
-            if hasattr(x, 'type') and x.type == ਖੁਦ.ਨਾਮ:
+            if hasattr(x, 'type') and x.type in ਖੁਦ.ਨਾਮ:
                 yield traduire(x, ਖੁਦ.ਭਾਸ਼ਾ)
             else:
                 yield x

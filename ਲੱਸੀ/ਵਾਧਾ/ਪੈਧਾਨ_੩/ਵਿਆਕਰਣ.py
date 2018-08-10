@@ -1,9 +1,6 @@
-import os
-
 import black
 
 from lark.indenter import Indenter
-
 from ਲੱਸੀ.ਵਿਆਕਰਣ.ਭਾਸ਼ਾ import ਵਿਆਕਰਣ_ਵਾਧਾ
 
 
@@ -27,14 +24,15 @@ class ਪੈਧਾਨ_੩_ਵਿਆ(ਵਿਆਕਰਣ_ਵਾਧਾ):
     ਵਾਧਾ = '.py'
     ਸਰੋਤ_ਭਾ = 'en'
 
-    ਰਾਸਤਾ = os.path.split(__file__)[0]
-
     ਸ਼ਬਦ_ਵਿਸ਼_ਬਦਲ = dict(postlex=PythonIndenter(), start='file_input', parser='lalr')
-    ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ = dict(postproc=ਮੁੜ_ਉਸਾਰੀ_ਬਾਅਦ_ਕਾਰ)
 
     spéciaux = {'ENT': 'DEC_NUMBER',
                 'DEC': 'FLOAT_NUMBER',
                 'ਨਾਮ': 'NAME'}
+
+    def __init__(ਖੁਦ):
+        super().__init__()
+        ਖੁਦ.ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ = dict(postproc=ਮੁੜ_ਉਸਾਰੀ_ਬਾਅਦ_ਕਾਰ)
 
     def ਬਾਅਦ_ਕਾਰਵਾਈ(ਖੁਦ, ਦਸਤ, ਭਾਸ਼ਾ):
         if ਭਾਸ਼ਾ == 'en':
@@ -42,8 +40,6 @@ class ਪੈਧਾਨ_੩_ਵਿਆ(ਵਿਆਕਰਣ_ਵਾਧਾ):
         else:
             return ਦਸਤ
 
-
-if __name__ == '__main__':
-    ਵਿਆ = ਪੈਧਾਨ_੩_ਵਿਆ()
-    ਵਿਆ.ਦਸਤ_ਸਰੋਤ_ਅਨੁ_ਬੲਾਉ()
-    ਵਿਆ.ਦਸਤ_ਅਨੁ_ਵਿਆ_ਬੲਾਉ(['த', 'ગુ', 'ਪੰ', 'हिं', 'fr', 'kaq', 'ار', 'فا', '汉'])
+    def gén_mots_intégrés(soimême):
+        # noinspection PyTypeChecker
+        return [str(x) for x in __builtins__  if x not in ["None", "True", "False"]] + list(object.__dict__) + ['self', 'cls']
