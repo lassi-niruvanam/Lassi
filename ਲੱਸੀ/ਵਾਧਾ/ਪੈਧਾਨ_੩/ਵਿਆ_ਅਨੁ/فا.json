@@ -39,7 +39,7 @@
     },
     {
       "ਸਰੋਤ": "funcdef : \"def\" NAME \"(\" parameters ? \")\" [ \"->\" test ] \":\" suite \n\n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "funcdef : \"تعریف\" NAME \"(\" parameters ? \")\" [ \"->\" test ] \":\" suite \n\n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
@@ -139,7 +139,7 @@
     },
     {
       "ਸਰੋਤ": "return_stmt : \"return\" [ testlist ] \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "return_stmt : \"بازگشت\" [ testlist ] \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
@@ -224,7 +224,7 @@
     },
     {
       "ਸਰੋਤ": "if_stmt : \"if\" test \":\" suite ( \"elif\" test \":\" suite ) * [ \"else\" \":\" suite ] \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "if_stmt : \"اگر\" test \":\" suite ( \"بغیر\" test \":\" suite ) * [ \"غیر\" \":\" suite ] \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
@@ -264,7 +264,7 @@
     },
     {
       "ਸਰੋਤ": "?test : or_test [ \"if\" or_test \"else\" test ] | lambdef \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "?test : or_test [ \"اگر\" or_test \"else\" test ] | lambdef \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
@@ -294,7 +294,7 @@
     },
     {
       "ਸਰੋਤ": "?not_test : \"not\" not_test -> not \n         | comparison \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "?not_test : not_test \"نیست\" -> not \n         | comparison \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
@@ -389,7 +389,7 @@
     },
     {
       "ਸਰੋਤ": "?atom : \"(\" [ yield_expr | testlist_comp ] \")\" -> tuple \n     | \"[\" [ testlist_comp ] \"]\" -> list \n     | \"{\" [ dictorsetmaker ] \"}\" -> dict \n     | NAME -> var \n     | number | string + \n     | \"(\" test \")\" \n     | \"...\" -> ellipsis \n     | \"None\" -> const_none \n     | \"True\" -> const_true \n     | \"False\" -> const_false \n\n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "?atom : \"(\" [ yield_expr | testlist_comp ] \")\" -> tuple \n     | \"[\" [ testlist_comp ] \"]\" -> list \n     | \"{\" [ dictorsetmaker ] \"}\" -> dict \n     | NAME -> var \n     | number | string + \n     | \"(\" test \")\" \n     | \"...\" -> ellipsis \n     | \"None\" -> const_none \n     | \"صحیح\" -> const_true \n     | \"غلط\" -> const_false \n\n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
@@ -429,7 +429,7 @@
     },
     {
       "ਸਰੋਤ": "classdef : \"class\" NAME [ \"(\" [ arguments ] \")\" ] \":\" suite \n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "classdef : \"دسته\" NAME [ \"(\" [ arguments ] \")\" ] \":\" suite \n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
@@ -469,7 +469,7 @@
     },
     {
       "ਸਰੋਤ": "comp_if : \"if\" test_nocond [ comp_iter ] \n\n",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "comp_if : \"اگر\" test_nocond [ comp_iter ] \n\n",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
@@ -771,7 +771,7 @@
     },
     {
       "ਸਰੋਤ": "print",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "چاپ",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
@@ -891,7 +891,7 @@
     },
     {
       "ਸਰੋਤ": "object",
-      "ਅਨੁ": "",
+      "ਅਨੁ": "هدف",
       "ਰੁਤਬਾ": "ਕਰਨੀ ਹੈ"
     },
     {
