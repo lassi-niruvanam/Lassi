@@ -1,3 +1,6 @@
+import os
+
+
 class postprocesseur(object):
     def __init__(ਖੁਦ):
         ਖੁਦ.liste_proc = [ਖੁਦ.proc]
@@ -33,3 +36,26 @@ class proc_mots_spéciaux(postprocesseur):
                 yield ਖੁਦ.règles[x]
             else:
                 yield x
+
+
+def résoudre_ext(fichier):
+    possibilités = []
+    nom, ext = os.path.splitext(fichier)
+    nom, ext2 = os.path.splitext(nom)
+
+    grammaires = []
+    for grm in grammaires:
+        if ext in grm.exts():
+            if ext2 in grm.langues():
+                possibilités.append((grm, ext2))
+            else:
+                possibilités.append((grm, None))
+
+    if len(possibilités):
+        return possibilités
+    else:
+        raise ValueError(fichier)
+
+
+if __name__ == '__main__':
+    résoudre_ext('abc.py')

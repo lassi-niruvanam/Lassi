@@ -1,4 +1,7 @@
-import black
+try:
+    import black
+except ImportError:
+    pass
 
 from lark.indenter import Indenter
 from ਲੱਸੀ.ਵਿਆਕਰਣ.ਭਾਸ਼ਾ import ਵਿਆਕਰਣ_ਵਾਧਾ
@@ -35,7 +38,7 @@ class ਪੈਧਾਨ_੩_ਵਿਆ(ਵਿਆਕਰਣ_ਵਾਧਾ):
         ਖੁਦ.ਮੁੜ_ਉਸਾਰੀ_ਬਦਲ = dict(postproc=ਮੁੜ_ਉਸਾਰੀ_ਬਾਅਦ_ਕਾਰ)
 
     def ਬਾਅਦ_ਕਾਰਵਾਈ(ਖੁਦ, ਦਸਤ, ਭਾਸ਼ਾ):
-        if ਭਾਸ਼ਾ == 'en':
+        if ਭਾਸ਼ਾ == 'en' and black is not None:
             return black.format_file_contents(ਦਸਤ, line_length=120, fast=True)
         else:
             return ਦਸਤ
