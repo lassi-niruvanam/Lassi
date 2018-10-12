@@ -1,8 +1,11 @@
+import os
+
 from ਲੱਸੀ.ਵਾਧਾ.ਪੈਧਾਨ_੩ import ਪੈਧਾਨ_੩_ਵਿਆ
 
 ਵਿਆ = ਪੈਧਾਨ_੩_ਵਿਆ()
-ਵਿਆ.actualizar_trads(['த', 'ગુ', 'ਪੰ', 'हिं', 'fr', 'kaq', 'ار', 'فا', '汉'])
+ਵਿਆ.actualizar_trads(['த', 'ગુ', 'ਪੰ', 'हिं', 'fr', 'kaq', 'ار', 'فا', '汉', 'ml'])
 c = """
+
 a = [1, 2, 3, 4, 5, 6, 7, 12587]
 x = True
 if not x:
@@ -17,12 +20,30 @@ class b(object):
             return False
 
 """
+c2 = """
 
+a = 123.4
+b = 10
 
-fr = ਵਿਆ.ਸੰਕੇਤ_ਅਨੁਵਾਦ(c, 'fr', 'en')
+def c(x, y):
+    print(x, y)
+    if x > y:
+        return x * y
+    else:
+        return False
+
+print(c(a, b))
+
+"""
+
+# ਪੈਧਾਨ_੩_ਵਿਆ().ਦਸਤਾਵੇਜ਼_ਅਨੁਵਾਦ(os.path.join(os.path.split(__file__)[0], 'test.汉.py'), 'ار', '汉')
+
+fr = ਵਿਆ.ਸੰਕੇਤ_ਅਨੁਵਾਦ(c2, 'fr', 'en')
 print(fr)
 # exec(ਵਿਆ.ਸੰਕੇਤ_ਅਨੁਵਾਦ(fr, 'en', 'fr'))
-print(ਵਿਆ.ਸੰਕੇਤ_ਅਨੁਵਾਦ(c, 'ار', 'en'))
-print(ਵਿਆ.ਸੰਕੇਤ_ਅਨੁਵਾਦ(c, 'த', 'en'))
-print(ਵਿਆ.ਸੰਕੇਤ_ਅਨੁਵਾਦ(c, '汉', 'en'))
-# ਪੈਧਾਨ_੩_ਵਿਆ().traduire_document('c.py', 'ار', 'en')
+print(ਵਿਆ.ਸੰਕੇਤ_ਅਨੁਵਾਦ(c2, 'ار', 'en'))
+print(ਵਿਆ.ਸੰਕੇਤ_ਅਨੁਵਾਦ(c2, 'த', 'en'))
+print(ਵਿਆ.ਸੰਕੇਤ_ਅਨੁਵਾਦ(c2, 'हिं', 'en'))
+print(ਵਿਆ.ਸੰਕੇਤ_ਅਨੁਵਾਦ(c2, '汉', 'en'))
+
+
