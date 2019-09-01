@@ -1,4 +1,4 @@
-from ਲੱਸੀ.ਵਿਆਕਰਣ.utils import postprocesseur
+from ਲੱਸੀ.ਵਿਆ.utils import postprocesseur
 from எண்ணிக்கை import உரைக்கு, வழவெளி
 
 

@@ -4,8 +4,8 @@ import os
 
 from lark import Lark, Tree
 from lark.reconstruct import Reconstructor
-from ਲੱਸੀ.ਵਿਆਕਰਣ.utils import proc_mots_spéciaux
-from ਲੱਸੀ.ਵਿਆਕਰਣ.ਸੰਖਯਾ import ਸੰਖਯਾ_ਅਨੁਵਾਦਵਾਲਾ
+from ਲੱਸੀ.ਵਿਆ.utils import proc_mots_spéciaux
+from ਲੱਸੀ.ਵਿਆ.ਸੰਖਯਾ import ਸੰਖਯਾ_ਅਨੁਵਾਦਵਾਲਾ
 
 
 class ਵਿਆਕਰਣ_ਵਾਧਾ(object):

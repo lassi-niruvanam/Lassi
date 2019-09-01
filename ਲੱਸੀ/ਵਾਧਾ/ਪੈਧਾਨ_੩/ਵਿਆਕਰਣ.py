@@ -4,7 +4,7 @@ except ImportError:
     pass
 
 from lark.indenter import Indenter
-from ਲੱਸੀ.ਵਿਆਕਰਣ.ਭਾਸ਼ਾ import ਵਿਆਕਰਣ_ਵਾਧਾ
+from ਲੱਸੀ.ਵਿਆ.ਭਾ import ਵਿਆਕਰਣ_ਵਾਧਾ
 
 
 class PythonIndenter(Indenter):
@@ -39,7 +39,7 @@ class ਪੈਧਾਨ_੩_ਵਿਆ(ਵਿਆਕਰਣ_ਵਾਧਾ):
 
     def ਬਾਅਦ_ਕਾਰਵਾਈ(ਖੁਦ, ਦਸਤ, ਭਾਸ਼ਾ):
         if ਭਾਸ਼ਾ == 'en' and black is not None:
-            return black.format_file_contents(ਦਸਤ, line_length=120, fast=True)
+            return black.format_file_contents(ਦਸਤ, fast=True, mode=black.FileMode())
         else:
             return ਦਸਤ
 
