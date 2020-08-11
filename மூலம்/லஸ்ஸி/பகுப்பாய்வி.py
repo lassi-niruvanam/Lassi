@@ -1,4 +1,4 @@
-from methodtools import lru_cache
+from functools import lru_cache
 from லஸ்ஸியிலக்கணங்கள் import இலக்கணம்_பெறு, நிரல்மொழிகள்
 
 from ._வெளியே.lark import Lark as லார்க

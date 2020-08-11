@@ -17,6 +17,6 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7'
     ],
-    install_requires=['lark-parser', 'ennikkai', 'methodtools'],
+    install_requires=['lark-parser', 'ennikkai'],
     package_data={'': ['*.lark', '*.json']}
 )
