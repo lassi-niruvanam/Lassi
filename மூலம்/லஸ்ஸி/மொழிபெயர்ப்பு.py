@@ -1,3 +1,5 @@
+import types
+
 from லஸ்ஸியிலக்கணங்கள் import நிரல்மொழிகள்
 
 from எண்ணிக்கை import உரைக்கு as உ
@@ -15,149 +17,48 @@ class எண்ணுரு_மாற்றம்(Visitor_Recursive):
         மரம்.children[0] = Token(மரம்.children[0].type, உ(மரம்.children[0].value, தன்.மொழி))
 
 
-class TradIdent(Visitor_Recursive):
-    def __init__(self, mozhi, மூல்மொழி):
-        self.mozhi = mozhi
-        self.மூல்மொழி = மூல்மொழி
-        self._trads = [
-            {
-                'fr': 'fonction',
-                'த': "செயலி",
-                'en': 'function'
-            },
-            {
-                'fr': 'soimême',
-                'த': "தன்",
-                'en': 'self'
-            },
-            {
-                'fr': 'Cercle',
-                'த': "வட்டம்_தொகுப்பு",
-                'en': 'Circle'
-            },
-            {
-                'fr': 'cercle',
-                'த': "வட்டம்",
-                'en': 'circle'
-            },
-            {
-                'fr': '__init__',
-                'த': "__துவக்கம்__",
-                'en': '__init__'
-            },
-            {
-                'fr': 'rayon',
-                'த': "ஆரம்",
-                'en': 'radius'
-            },
-            {
-                'fr': 'circonférence',
-                'த': "சுற்றளவு",
-                'en': 'circumference'
-            },
-            {
-                'fr': 'pi',
-                'த': "பை",
-                'en': 'pi'
-            }
-            ,
-            {
-                'fr': 'rayons',
-                'த': "ஆரங்கள்",
-                'en': 'radii'
-            }
-            ,
-            {
-                'fr': 'gamme',
-                'த': "சரகம்",
-                'en': 'range'
-            }
-            ,
-            {
-                'fr': 'cercles',
-                'த': "வட்டங்கள்",
-                'en': 'circles'
-            }
-            ,
-            {
-                'fr': 'r',
-                'த': "ஆ",
-                'en': 'r'
-            },
-            {
-                'fr': 'objet',
-                'த': "பொருள்",
-                'en': 'object'
-            },
-            {
-                'fr': 'affiche',
-                'த': "பதிப்பி",
-                'en': 'print'
-            },
-            {
-                'fr': 'superficie',
-                'த': "பரப்பளவு",
-                'en': 'area'
-            },
-            {
-                'fr': 'x',
-                'த': "இ",
-                'en': 'x'
-            },
-            {
-                'fr': 'y',
-                'த': "ஈ",
-                'en': 'y'
-            },
-            {
-                'fr': 'z',
-                'த': "ஊ",
-                'en': 'z'
-            },
-            {
-                'fr': 'w',
-                'த': "ஏ",
-                'en': 'w'
-            },
-            {
-                'fr': 'c',
-                'த': "வ",
-                'en': 'c'
-            }
-        ]
+class இனங்காட்டி_மாற்றம்(Visitor_Recursive):
+    def __init__(தன், மொழி, மூல்மொழி, இனங்காட்டி_கிளைகள், இனங்காட்டி_மாற்றங்கள்):
+        தன்.மொழி = மொழி
+        தன்.மூல்மொழி = மூல்மொழி
+        தன்.மாற்றங்கள் = இனங்காட்டி_மாற்றங்கள்
 
-    def var(self, tree):
-        tree.children[0] = Token(tree.children[0].type, self._trad(tree.children[0].value))
+        for கிளை, குழந்தைகள் in இனங்காட்டி_கிளைகள்.items():
 
-    def funcdef(self, tree):
-        tree.children[0] = Token(tree.children[0].type, self._trad(tree.children[0].value))
+            def செயலி_உருவாக்கு(குழந்தைகள்_):
+                def செயலி(தன், மரம்):
+                    if குழந்தைகள்_ is True:
+                        குழந்தை_பட்டியல் = range(len(மரம்.children))
+                    elif isinstance(குழந்தைகள்_, list):
+                        குழந்தை_பட்டியல் = குழந்தைகள்_
+                    else:
+                        குழந்தை_பட்டியல் = [குழந்தைகள்_]
 
-    def classdef(self, tree):
-        tree.children[0] = Token(tree.children[0].type, self._trad(tree.children[0].value))
+                    for கு in குழந்தை_பட்டியல்:
+                        மரம்.children[கு] = Token(மரம்.children[கு].type, தன்._மாற்றம்(மரம்.children[கு].value))
 
-    def getattr(self, tree):
-        tree.children[1] = Token(tree.children[1].type, self._trad(tree.children[1].value))
+                return செயலி
 
-    def parameters(self, tree):
-        for i, c in enumerate(tree.children):
-            tree.children[i] = Token(c.type, self._trad(c.value))
+            setattr(தன், கிளை, types.MethodType(செயலி_உருவாக்கு(குழந்தைகள்_=குழந்தைகள்), தன்))
 
-    def _trad(self, x):
+    def _மாற்றம்(தன், உரை):
         try:
-            d = next(y for y in self._trads if self.மூல்மொழி in y and y[self.மூல்மொழி] == x)
-            return d[self.mozhi]
+            d = next(இ for இ in தன்.மாற்றங்கள் if தன்.மூல்மொழி in இ and இ[தன்.மூல்மொழி] == உரை)
+            return d[தன்.மொழி]
         except (StopIteration, KeyError):
-            return x
+            return உரை
 
 
-def மொழியாக்கம்(உரை, நிரல்மொழி, மொழி, மூல்மொழி=None, எண்ணுரு=None, மூலெண்ணுரு=None, பதிப்பு=None):
+def மொழியாக்கம்(உரை, நிரல்மொழி, மொழி, மூல்மொழி=None, எண்ணுரு=None, மூலெண்ணுரு=None, இனங்காட்டிகள்=None, பதிப்பு=None):
     பகுப்பாய்வி = பகுப்பாய்வி_பெறு(நிரல்மொழி, மொழி=மூல்மொழி, எண்ணுரு=மூலெண்ணுரு, பதிப்பு=பதிப்பு)
     எண்ணுரு = நிரல்மொழிகள்.எண்ணுரு_பெறு(நிரல்மொழி, மொழி=மொழி, எண்ணுரு=எண்ணுரு, பதிப்பு=பதிப்பு)
 
     மரம் = பகுப்பாய்வி.parse(உரை)
     எண்ணுரு_மாற்றம்(எண்ணுரு).visit(மரம்)
 
-    TradIdent(மொழி, மூல்மொழி).visit(மரம்)
+    இனங்காட்டி_கிளைகள் = நிரல்மொழிகள்.தகவல்(நிரல்மொழி, 'இனங்காட்டி கிளைகள்', பதிப்பு=பதிப்பு)
+    if இனங்காட்டி_கிளைகள் and இனங்காட்டிகள்:
+        இனங்காட்டி_மாற்றம்(மொழி, மூல்மொழி, இனங்காட்டி_கிளைகள், இனங்காட்டிகள்).visit(மரம்)
 
     புனரமைப்பு = புனரமைப்பு_பெறு(நிரல்மொழி, மொழி, எண்ணுரு, பதிப்பு=பதிப்பு)
     வெளியீடு = புனரமைப்பு.reconstruct(மரம், postproc=பின்_புனரமைப்பு_பெறு(நிரல்மொழி, பதிப்பு=பதிப்பு))
