@@ -1,9 +1,9 @@
 from methodtools import lru_cache
 from லஸ்ஸியிலக்கணங்கள் import இலக்கணம்_பெறு, நிரல்மொழிகள்
 
-from lark import Lark as லார்க
-from lark.indenter import Indenter
-from lark.reconstruct import Reconstructor
+from ._வெளியே.lark import Lark as லார்க
+from ._வெளியே.lark.indenter import Indenter
+from ._வெளியே.lark.reconstruct import Reconstructor
 
 
 class பாகுப்படுத்தி(object):

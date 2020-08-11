@@ -1,19 +1,13 @@
-import os
-
 from setuptools import setup, find_packages
-
-ਰਾਸ੍ਤਾ = os.path.split(os.path.realpath(__file__))[0]
-
-with open(os.path.join(ਰਾਸ੍ਤਾ, 'ਲੱਸੀ', 'ਸੰਸਕਰਣ.txt')) as ਸੰਸਕਰਣ_ਦਸ੍ਤਾਵੇਜ਼:
-    ਸੰਸਕਰਣ = ਸੰਸਕਰਣ_ਦਸ੍ਤਾਵੇਜ਼.read().strip()
 
 setup(
     name='lassi',
-    version=ਸੰਸਕਰਣ,
-    packages=find_packages('/ਲੱਸੀ'),
+    version='0.1.0',
+    packages=find_packages(where="மூலம்"),
+    package_dir={"": "மூலம்"},
     url='https://lassi.readthedocs.io',
     download_url='https://github.com/julienmalard/Lassi',
-    license='GNU GPL 3',
+    license='GNU Affero GPL 3',
     author='ਜ਼ੂਲੀਏਂ ਮਲਾਰ (Julien Malard)',
     author_email='julien.malard@mail.mcgill.ca',
     description='ਸੰਕੇਤ ਦੀ ਅਨੁਵਾਦ।',
@@ -23,8 +17,6 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7'
     ],
-    install_requires=['lark-parser', 'ennikkai'],
-    package_data={
-        '': ['*.txt', '*.json', '*.lark'],
-    },
+    install_requires=['lark-parser', 'ennikkai', 'methodtools'],
+    package_data={'': ['*.lark', '*.json']}
 )

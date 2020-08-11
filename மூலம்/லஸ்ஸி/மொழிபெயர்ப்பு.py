@@ -1,8 +1,8 @@
 from லஸ்ஸியிலக்கணங்கள் import நிரல்மொழிகள்
 
-from lark import Token
-from lark.visitors import Visitor_Recursive
 from எண்ணிக்கை import உரைக்கு as உ
+from ._வெளியே.lark import Token
+from ._வெளியே.lark.visitors import Visitor_Recursive
 from .பகுப்பாய்வி import பகுப்பாய்வி_பெறு, புனரமைப்பு_பெறு, பின்_புனரமைப்பு_பெறு
 
 
@@ -23,106 +23,106 @@ class TradIdent(Visitor_Recursive):
             {
                 'fr': 'fonction',
                 'த': "செயலி",
-                'English': 'function'
+                'en': 'function'
             },
             {
                 'fr': 'soimême',
                 'த': "தன்",
-                'English': 'self'
+                'en': 'self'
             },
             {
                 'fr': 'Cercle',
                 'த': "வட்டம்_தொகுப்பு",
-                'English': 'Circle'
+                'en': 'Circle'
             },
             {
                 'fr': 'cercle',
                 'த': "வட்டம்",
-                'English': 'circle'
+                'en': 'circle'
             },
             {
                 'fr': '__init__',
                 'த': "__துவக்கம்__",
-                'English': '__init__'
+                'en': '__init__'
             },
             {
                 'fr': 'rayon',
                 'த': "ஆரம்",
-                'English': 'radius'
+                'en': 'radius'
             },
             {
                 'fr': 'circonférence',
                 'த': "சுற்றளவு",
-                'English': 'circumference'
+                'en': 'circumference'
             },
             {
                 'fr': 'pi',
                 'த': "பை",
-                'English': 'pi'
+                'en': 'pi'
             }
             ,
             {
                 'fr': 'rayons',
                 'த': "ஆரங்கள்",
-                'English': 'radii'
+                'en': 'radii'
             }
             ,
             {
                 'fr': 'gamme',
                 'த': "சரகம்",
-                'English': 'range'
+                'en': 'range'
             }
             ,
             {
                 'fr': 'cercles',
                 'த': "வட்டங்கள்",
-                'English': 'circles'
+                'en': 'circles'
             }
             ,
             {
                 'fr': 'r',
                 'த': "ஆ",
-                'English': 'r'
+                'en': 'r'
             },
             {
                 'fr': 'objet',
                 'த': "பொருள்",
-                'English': 'object'
+                'en': 'object'
             },
             {
                 'fr': 'affiche',
                 'த': "பதிப்பி",
-                'English': 'print'
+                'en': 'print'
             },
             {
                 'fr': 'superficie',
                 'த': "பரப்பளவு",
-                'English': 'area'
+                'en': 'area'
             },
             {
                 'fr': 'x',
                 'த': "இ",
-                'English': 'x'
+                'en': 'x'
             },
             {
                 'fr': 'y',
                 'த': "ஈ",
-                'English': 'y'
+                'en': 'y'
             },
             {
                 'fr': 'z',
                 'த': "ஊ",
-                'English': 'z'
+                'en': 'z'
             },
             {
                 'fr': 'w',
                 'த': "ஏ",
-                'English': 'w'
+                'en': 'w'
             },
             {
                 'fr': 'c',
                 'த': "வ",
-                'English': 'c'
+                'en': 'c'
             }
         ]
 

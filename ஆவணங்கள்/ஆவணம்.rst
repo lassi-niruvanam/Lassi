@@ -1,0 +1,21 @@
+Philosophie
+-----------
+
+#. Identifiants et chiffres devraient être universels (pour toutes les langues informatiques)
+#. Lassi s'occupe de la translitération des variables là où nécessaire
+#. Intéropérabilité entre programmes et modules dans différentes langues
+#. Spécification et implémentation agnostiques de la langue informatique et de la langue humaine
+
+Règles pour la traduction
+-------------------------
+
+#. Traduire formellement (pas de tanglais, franglais, etc.)
+#. Vérifier si un projet similaire, formel ou informel, n'existerait pas déjà. Vérifier les traductions pour des langues
+   similaires, et aussi des langues informatiques, et essayer de garder le même vocabulaire.
+
+Règles pour langues lassifiables
+--------------------------------
+
+#. Supporter identifiants Unicode
+#. Publier grammaire formelle
+#. Publier liste de mots clefs
