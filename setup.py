@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='lassi',
-    version='0.1.2',
+    version='0.1.3',
     packages=find_packages(where="மூலம்"),
     package_dir={"": "மூலம்"},
     url='https://lassi.readthedocs.io',
