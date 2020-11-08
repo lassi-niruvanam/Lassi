@@ -19,3 +19,27 @@ Règles pour langues lassifiables
 #. Supporter identifiants Unicode
 #. Publier grammaire formelle
 #. Publier liste de mots clefs
+
+Astuces pour les grammaires
+---------------------------
+#. Mettre un `!` avant les règles à jeton multiple (sinon, la recompilation ne saura pas quel jeton utiliser)
+
+!augassign: ("+=" | "-=" | "*=" | "@=" | "/=" | "%=" | "&=" | "|=" | "^=" | "<<=" | ">>=" | "**=" | "//=")
+
+# Diviser les terminales qui doivent être traduites
+
+Ne pas faire :
+!keyword: "None" | "True" | "False"
+
+Lassi ne saura différentier entre les mots-clefs lors de la traduction
+
+Cette reformulation évite toute ambiguité :
+keyword: "None"    -> const_none
+     | "True"    -> const_true
+     | "False"   -> const_false
+
+Ou bien :
+NONE: "None"
+TRUE: "True"
+FALSE: "False"
+keyword: NONE | TRUE | FALSE

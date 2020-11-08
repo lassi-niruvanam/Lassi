@@ -7,7 +7,7 @@ from .common import ParserConf
 from .lexer import Token, PatternStr
 from .parsers import earley
 from .grammar import Rule, Terminal, NonTerminal
-
+from .utils import isalnum
 
 
 def is_discarded_terminal(t):
@@ -93,9 +93,6 @@ def make_recons_rule(origin, expansion, old_expansion):
 
 def make_recons_rule_to_term(origin, term):
     return make_recons_rule(origin, [Terminal(term.name)], [term])
-
-def _isalnum(x):
-    return unicodedata.category(x) in ['Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl', 'Mn', 'Mc', 'Nd', 'Pc']
 
 class Reconstructor:
     def __init__(self, parser, term_subs={}):
@@ -197,7 +194,7 @@ class Reconstructor:
         y = []
         prev_item = ''
         for item in x:
-            if prev_item and item and _isalnum(prev_item[-1]) and _isalnum(item[0]):
+            if prev_item and item and isalnum(prev_item[-1]) and isalnum(item[0]):
                 y.append(' ')
             y.append(item)
             prev_item = item

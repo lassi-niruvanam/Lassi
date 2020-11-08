@@ -1,0 +1,24 @@
+language: python
+python:
+  - '3.8'
+
+os:
+  - linux
+env:
+  global:
+    - TX_BRANCH="master"
+install:
+  - pip install poetry
+  - pip install coveralls codecov
+  - poetry install --no-root
+#  - poetry run lassi compiler
+  - poetry install -v
+
+script:
+  - poetry run pytest
+
+after_success:
+- poetry build
+- coveralls --rcfile=.coveragerc
+- codecov
+- cd ..

@@ -1,8 +1,22 @@
+import unicodedata
+
 import sys
 import os
 from functools import reduce
 from ast import literal_eval
 from collections import deque
+
+def isalnum(x):
+    if len(x) != 1:
+        return all(isalnum(y) for y in x)
+    return unicodedata.category(x) in ['Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl', 'Mn', 'Mc', 'Nd', 'Pc']
+
+
+def isalpha(x):
+    if len(x) != 1:
+        return all(isalpha(y) for y in x)
+    return unicodedata.category(x) in ['Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Mn', 'Mc', 'Pc']
+
 
 class fzset(frozenset):
     def __repr__(self):
