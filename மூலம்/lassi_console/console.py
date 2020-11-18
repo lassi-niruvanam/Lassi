@@ -68,6 +68,7 @@ def _recompiler(conf, forcer):
                 continue
 
             r = obt_langue_ficher(f, conf.ops["lang"])
+            print(f, r)
             if r:
                 nom_base, l_ordi, l_humaine = r
                 nom_comp = nom_base + '.' + நிரல்மொழிகள்.தகவல்(l_ordi, 'நீட்சி')
