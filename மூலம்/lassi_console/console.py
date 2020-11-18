@@ -38,6 +38,7 @@ _dates_erreurs = {}
 
 def obt_langue_ficher(f, probable):
     r = நிரல்மொழிகள்.நீட்சி_மூலம்_மொழி(f)
+    print(f, r)
     if r:
         base, ordi, humaine = r
         if len(humaine) > 1:
@@ -68,7 +69,7 @@ def _recompiler(conf, forcer):
                 continue
 
             r = obt_langue_ficher(f, conf.ops["lang"])
-            print(f, r)
+
             if r:
                 nom_base, l_ordi, l_humaine = r
                 nom_comp = nom_base + '.' + நிரல்மொழிகள்.தகவல்(l_ordi, 'நீட்சி')
