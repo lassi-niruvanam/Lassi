@@ -24,7 +24,7 @@ click = "^7.1.1"
 ennikkai = "^1.2.1"
 regex = "^2020"
 toml = "^0.10.2"
-lassi-ilakkanankal = "^1.0.12"
+lassi-ilakkanankal = { git = "https://github.com/lassi-samaaj/lassi-ilakkanangal.git", branch = "master" }
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.1.2"
