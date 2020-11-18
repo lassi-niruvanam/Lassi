@@ -1,11 +1,13 @@
 import os
 import shutil
+import traceback
+from time import sleep, time
 
 import click
 import toml
-import லஸ்ஸி
-from time import sleep, time
 from லஸ்ஸியிலக்கணங்கள் import நிரல்மொழிகள்
+
+import லஸ்ஸி
 
 
 class ConfigLassi(object):
@@ -88,15 +90,19 @@ def _recompiler(conf, forcer):
                         print('On compile... ', f_orig)
                         if not text_orig.endswith('\n'):
                             text_orig += "\n"
-                        text_comp = லஸ்ஸி.மொழியாக்கம்(
-                            உரை=text_orig, நிரல்மொழி=l_ordi, மொழி=langue_cible, மூல்மொழி=l_humaine
-                        )
+                        if langue_cible != l_humaine:
+                            text_comp = லஸ்ஸி.மொழியாக்கம்(
+                                உரை=text_orig, நிரல்மொழி=l_ordi, மொழி=langue_cible, மூல்மொழி=l_humaine
+                            )
+                        else:
+                            text_comp = text_orig
                         with open(f_comp, 'w', encoding='utf8') as d:
                             d.write(text_comp)
                         print('On à compilé... ', f_orig)
                         if f_orig in _dates_erreurs:
                             _dates_erreurs.pop(f_orig)
                     except Exception as e:
+                        traceback.print_exc()
                         print(e)
                         _dates_erreurs[f_orig] = time()
                 else:

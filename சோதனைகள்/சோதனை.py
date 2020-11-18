@@ -22,6 +22,8 @@ import re
 import regex as re
 from lark import Lark
 from lark import Lark as லார்க்
+[x for x in z]
+
 x == 1
 y += 2
 x in [1,2,3]
